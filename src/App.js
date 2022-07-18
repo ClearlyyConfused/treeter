@@ -1,5 +1,11 @@
+import StartPage from './StartPage/StartPage';
+
 function App() {
-	return <div className="App">Test 123</div>;
+	return (
+		<div className="App">
+			<StartPage />
+		</div>
+	);
 }
 
 export default App;

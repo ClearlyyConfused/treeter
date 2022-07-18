@@ -1,0 +1,44 @@
+.start-page {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+}
+
+.start-page-banner {
+	width: 40%;
+	height: 100%;
+	background-color: aquamarine;
+}
+
+.start-page-content {
+	width: 60%;
+	height: 100%;
+	background-color: black;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 30px;
+	gap: 30px;
+
+	color: white;
+}
+
+.start-page-content h1 {
+	font-size: 60px;
+}
+
+.start-page h2 {
+	font-size: 28px;
+}
+
+.start-page-content h3 {
+	font-size: 18px;
+}
+
+.start-page-content button {
+	width: 300px;
+	height: 50px;
+	border-radius: 30px;
+}
