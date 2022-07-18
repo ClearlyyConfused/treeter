@@ -21,6 +21,7 @@ function LoginPage({ setCurrentPage }) {
 				} else {
 					localStorage.setItem('token', data.token);
 					setCurrentPage('StartPage');
+					window.location.reload();
 				}
 			});
 	}

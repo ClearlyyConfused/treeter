@@ -1,9 +1,10 @@
 import StartPage from './StartPage/StartPage';
+import HomePage from './Homepage/HomePage';
 
 function App() {
 	return (
 		<div className="App">
-			<StartPage />
+			{localStorage.getItem('token') ? <HomePage /> : <StartPage />}
 		</div>
 	);
 }
