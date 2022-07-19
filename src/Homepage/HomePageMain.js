@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PostForm from './PostForm';
+import PostLikes from './PostLikes';
 
 function Posts() {
 	const [posts, setPosts] = useState([]);
@@ -44,6 +45,8 @@ function Posts() {
 								<h4>{post.author}</h4>
 								<p>{post.content}</p>
 								<p>{post.timestamp}</p>
+								<p>Likes: {post.likes.length}</p>
+								<PostLikes postId={post._id} getPosts={getPosts} />
 							</div>
 						);
 					})}
