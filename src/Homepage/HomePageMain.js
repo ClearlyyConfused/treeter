@@ -19,21 +19,24 @@ function Posts() {
 			});
 	}, []);
 
-	if (loading) {
-		return <div>Loading Posts...</div>;
-	}
 	return (
 		<div className="homepage-posts">
 			<h1>All Posts</h1>
 			<PostForm />
-			{posts.map((post) => {
-				return (
-					<div className="homepage-post">
-						<h4>{post.author}</h4>
-						<p>{post.content}</p>
-					</div>
-				);
-			})}
+			{loading ? (
+				<div>Loading Posts...</div>
+			) : (
+				<div>
+					{posts.map((post) => {
+						return (
+							<div className="homepage-post">
+								<h4>{post.author}</h4>
+								<p>{post.content}</p>
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 }

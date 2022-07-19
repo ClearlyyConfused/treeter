@@ -7,13 +7,11 @@ function LoginPage({ setCurrentPage }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		const req = {
+		fetch('https://treeter-api.herokuapp.com/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),
-		};
-		fetch('https://treeter-api.herokuapp.com/login', req)
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.error) {
@@ -38,15 +36,15 @@ function LoginPage({ setCurrentPage }) {
 				/>
 				<label htmlFor="password">Password:</label>
 				<input
-					type="text"
+					type="password"
 					name="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<button type="submit">Submit</button>
 			</form>
-			{error}
 			<button onClick={() => setCurrentPage('StartPage')}>Back</button>
+			<p className="error-message">{error}</p>
 		</div>
 	);
 }

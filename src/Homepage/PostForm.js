@@ -5,16 +5,14 @@ function PostForm() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		const req = {
+		fetch('https://treeter-api.herokuapp.com/posts', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),
 			},
 			body: JSON.stringify({ content: content }),
-		};
-		fetch('https://treeter-api.herokuapp.com/posts', req);
+		});
 		window.location.reload();
 	}
 

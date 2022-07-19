@@ -6,13 +6,11 @@ function RegisterPage({ setCurrentPage }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
-		const req = {
+		fetch('https://treeter-api.herokuapp.com/register', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),
-		};
-		fetch('https://treeter-api.herokuapp.com/register', req);
+		});
 		setCurrentPage('LoginPage');
 	}
 
@@ -29,7 +27,7 @@ function RegisterPage({ setCurrentPage }) {
 				/>
 				<label htmlFor="password">Password:</label>
 				<input
-					type="text"
+					type="password"
 					name="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
