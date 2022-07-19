@@ -14,14 +14,13 @@ function PostForm() {
 			},
 			body: JSON.stringify({ content: content }),
 		};
-		fetch('https://treetter.herokuapp.com/posts', req);
+		fetch('https://treeter-api.herokuapp.com/posts', req);
 		window.location.reload();
 	}
 
 	return (
 		<div className="post-form">
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="content"></label>
 				<input
 					type="text"
 					name="content"

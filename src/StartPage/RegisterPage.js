@@ -12,12 +12,12 @@ function RegisterPage({ setCurrentPage }) {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),
 		};
-		fetch('https://treetter.herokuapp.com/register', req);
+		fetch('https://treeter-api.herokuapp.com/register', req);
 		setCurrentPage('LoginPage');
 	}
 
 	return (
-		<div>
+		<div className="authentication-page">
 			<h1>Register</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="username">Username:</label>

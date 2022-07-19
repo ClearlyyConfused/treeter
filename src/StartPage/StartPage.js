@@ -1,4 +1,4 @@
-import '../startpage.css';
+import './startpage.css';
 import { useState } from 'react';
 import RegisterPage from './RegisterPage';
 import LoginPage from './LoginPage';
@@ -19,7 +19,7 @@ function StartPage() {
 				<div className="start-page-content">
 					<h1>HAPPENING TODAY</h1>
 					<div>
-						<h2>JOIN TREETTER NOW</h2>
+						<h2>JOIN TREETER NOW</h2>
 						<button onClick={() => setCurrentPage('RegisterPage')}>REGISTER</button>
 					</div>
 					<div>

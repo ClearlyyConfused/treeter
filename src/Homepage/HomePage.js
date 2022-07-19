@@ -1,5 +1,5 @@
 import Posts from './Posts';
-import PostForm from './PostForm';
+import './homepage.css';
 
 function HomePage() {
 	function logout() {
@@ -9,9 +9,10 @@ function HomePage() {
 
 	return (
 		<div className="homepage">
-			<button onClick={logout}>Logout</button>
-			<PostForm />
 			<Posts />
+			<div className="homepage-sidebar">
+				<button onClick={logout}>LOGOUT</button>
+			</div>
 		</div>
 	);
 }

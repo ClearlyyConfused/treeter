@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import PostForm from './PostForm';
 
 function Posts() {
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		fetch('https://treetter.herokuapp.com/posts', {
+		fetch('https://treeter-api.herokuapp.com/posts', {
 			headers: {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),
@@ -23,6 +24,8 @@ function Posts() {
 	}
 	return (
 		<div className="homepage-posts">
+			<h1>All Posts</h1>
+			<PostForm />
 			{posts.map((post) => {
 				return (
 					<div className="homepage-post">

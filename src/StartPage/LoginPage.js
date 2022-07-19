@@ -13,21 +13,20 @@ function LoginPage({ setCurrentPage }) {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),
 		};
-		fetch('https://treetter.herokuapp.com/login', req)
+		fetch('https://treeter-api.herokuapp.com/login', req)
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.error) {
 					setError(data.error);
 				} else {
 					localStorage.setItem('token', data.token);
-					setCurrentPage('StartPage');
 					window.location.reload();
 				}
 			});
 	}
 
 	return (
-		<div>
+		<div className="authentication-page">
 			<h1>Login</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="username">Username:</label>
