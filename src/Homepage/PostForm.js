@@ -34,6 +34,7 @@ function PostForm({ getPosts }) {
 					name="content"
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
+					maxLength="250"
 				/>
 				<button type="submit">Treet</button>
 			</form>

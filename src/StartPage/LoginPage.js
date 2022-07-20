@@ -18,6 +18,7 @@ function LoginPage({ setCurrentPage }) {
 					setError(data.error);
 				} else {
 					localStorage.setItem('token', data.token);
+					localStorage.setItem('username', data.username);
 					window.location.reload();
 				}
 			});

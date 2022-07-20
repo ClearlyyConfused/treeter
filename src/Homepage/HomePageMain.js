@@ -31,6 +31,7 @@ function Posts() {
 		getPosts();
 	}, []);
 
+	console.log(localStorage);
 	return (
 		<div className="homepage-posts">
 			<h1>All Posts</h1>
@@ -42,11 +43,19 @@ function Posts() {
 					{posts.map((post) => {
 						return (
 							<div className="homepage-post">
-								<h4>{post.author}</h4>
+								<div className="post-title">
+									<h4>{post.author}</h4>
+									<p>on {post.timestamp}</p>
+								</div>
 								<p>{post.content}</p>
-								<p>{post.timestamp}</p>
-								<p>Likes: {post.likes.length}</p>
-								<PostLikes postId={post._id} getPosts={getPosts} />
+								<div className="post-footer">
+									<PostLikes
+										postId={post._id}
+										getPosts={getPosts}
+										postLikes={post.likes}
+									/>
+									<p>{post.likes.length}</p>
+								</div>
 							</div>
 						);
 					})}

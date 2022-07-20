@@ -50,6 +50,7 @@
 	box-sizing: border-box;
 	border: 1px solid rgba(184, 184, 184, 0.3);
 	background-color: #4d3238;
+	box-shadow: 3px 2px 5px 1px rgba(0, 0, 0, 0.5);
 }
 
 .homepage-posts h1 {
@@ -58,16 +59,69 @@
 }
 
 .homepage-post {
-	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	padding: 18px;
+	padding-bottom: 10px;
 	border: 1px solid rgba(184, 184, 184, 0.3);
 	border-left: none;
 	border-right: none;
+	height: 120px;
+}
+
+.homepage-post > p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.post-title {
+	display: flex;
+	gap: 5px;
+}
+
+.post-title h4 {
+	font-size: 16px;
+}
+
+.post-title p {
+	font-size: 16px;
+	font-weight: 600;
+	color: rgb(145, 145, 145);
+}
+
+.post-footer {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+	margin-top: auto;
+}
+
+.post-footer button {
+	border: none;
+	background-color: none;
+	background: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+}
+
+.like-icon {
+	width: 20px;
+	height: 20px;
+	filter: invert(1);
 }
 
 /* /////////////////////////// */
 
 .homepage-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
 	padding: 20px;
+	position: sticky;
+	top: 0;
+	height: fit-content;
 }
 
 .homepage-sidebar button {
@@ -77,4 +131,9 @@
 	padding: 10px;
 	background-color: white;
 	font-weight: 800;
+}
+
+.homepage-sidebar a {
+	text-decoration: none;
+	color: inherit;
 }
