@@ -8,6 +8,7 @@ function HomePageSidebar({ setCurrentPage }) {
 
 	return (
 		<div className="homepage-sidebar">
+			<h2>Welcome {localStorage.getItem('username')}</h2>
 			<a href="#root">
 				<button onClick={switchToHome}>HOME</button>
 			</a>

@@ -31,7 +31,6 @@ function Posts() {
 		getPosts();
 	}, []);
 
-	console.log(localStorage);
 	return (
 		<div className="homepage-posts">
 			<h1>All Posts</h1>

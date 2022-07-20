@@ -9,15 +9,12 @@ function PostLikes({ postId, getPosts, postLikes }) {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),
 			},
-		}).then(() => {
-			getPosts();
-		});
+		}).then(() => getPosts());
 	}
 
 	const likeIconSrc = postLikes.includes(localStorage.getItem('username'))
 		? likeIconFilled
 		: likeIconEmpty;
-
 	return (
 		<button onClick={handleClick}>
 			<img className="like-icon" src={likeIconSrc} alt="Like" />

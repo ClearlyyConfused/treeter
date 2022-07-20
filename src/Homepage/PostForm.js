@@ -20,9 +20,7 @@ function PostForm({ getPosts }) {
 				token: localStorage.getItem('token'),
 			},
 			body: JSON.stringify({ content: content, timestamp: timestamp }),
-		}).then(() => {
-			getPosts();
-		});
+		}).then(() => getPosts());
 		setContent('');
 	}
 
