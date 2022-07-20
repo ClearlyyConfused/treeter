@@ -18,6 +18,7 @@ function PostLikes({ postId, getPosts, postLikes }) {
 	return (
 		<button onClick={handleClick}>
 			<img className="like-icon" src={likeIconSrc} alt="Like" />
+			<p>{postLikes.length}</p>
 		</button>
 	);
 }

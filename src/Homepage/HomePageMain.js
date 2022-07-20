@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PostForm from './PostForm';
 import PostLikes from './PostLikes';
+import PostComments from './PostComments';
 
 function Posts() {
 	const [posts, setPosts] = useState([]);
@@ -48,12 +49,16 @@ function Posts() {
 								</div>
 								<p>{post.content}</p>
 								<div className="post-footer">
+									<PostComments
+										postId={post._id}
+										getPosts={getPosts}
+										postComments={post.comments}
+									/>
 									<PostLikes
 										postId={post._id}
 										getPosts={getPosts}
 										postLikes={post.likes}
 									/>
-									<p>{post.likes.length}</p>
 								</div>
 							</div>
 						);

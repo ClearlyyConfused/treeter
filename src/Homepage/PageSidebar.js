@@ -1,4 +1,4 @@
-function HomePageSidebar({ setCurrentPage }) {
+function PageSidebar() {
 	function switchToHome() {}
 
 	function logout() {
@@ -9,7 +9,7 @@ function HomePageSidebar({ setCurrentPage }) {
 	return (
 		<div className="homepage-sidebar">
 			<h2>Welcome {localStorage.getItem('username')}</h2>
-			<a href="#root">
+			<a href="/">
 				<button onClick={switchToHome}>HOME</button>
 			</a>
 			<button onClick={logout}>LOGOUT</button>
@@ -17,4 +17,4 @@ function HomePageSidebar({ setCurrentPage }) {
 	);
 }
 
-export default HomePageSidebar;
+export default PageSidebar;

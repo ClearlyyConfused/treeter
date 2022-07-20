@@ -1,12 +1,12 @@
 import HomePageMain from './HomePageMain';
-import HomePageSidebar from './HomePageSidebar';
+import PageSidebar from './PageSidebar';
 import './homepage.css';
 
 function HomePage() {
 	return (
 		<div className="homepage">
 			<HomePageMain />
-			<HomePageSidebar />
+			<PageSidebar />
 		</div>
 	);
 }
