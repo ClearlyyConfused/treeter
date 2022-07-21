@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import PageSidebar from '../Homepage/PageSidebar';
 import CommentForm from './CommentForm';
 import PostLikes from '../Homepage/PostLikes';
+import CommentDelete from './CommentDelete';
 import './post.css';
 
 function Post() {
@@ -56,6 +57,7 @@ function Post() {
 								postLikes={postInfo.likes}
 							/>
 						</div>
+
 						<div className="post-comments">
 							{postInfo.comments.map((comment) => {
 								return (
@@ -65,6 +67,11 @@ function Post() {
 											<p>on {comment.timestamp}</p>
 										</div>
 										<p>{comment.content}</p>
+										<CommentDelete
+											postId={postId}
+											getComments={getComments}
+											comment={comment}
+										/>
 									</div>
 								);
 							})}

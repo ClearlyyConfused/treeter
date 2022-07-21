@@ -1,5 +1,5 @@
-import likeIconEmpty from '../images/cards-heart-outline.svg';
-import likeIconFilled from '../images/cards-heart.svg';
+import likeIconEmpty from '../../images/cards-heart-outline.svg';
+import likeIconFilled from '../../images/cards-heart.svg';
 
 function PostLikes({ postId, getPosts, postLikes }) {
 	function handleClick() {

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PostForm from './PostForm';
 import PostLikes from './PostLikes';
 import PostComments from './PostComments';
+import PostDelete from './PostDelete';
 
 function Posts() {
 	const [posts, setPosts] = useState([]);
@@ -16,14 +17,13 @@ function Posts() {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				setPosts(
-					data.sort((a, b) => {
-						if (new Date(b.timestamp) - new Date(a.timestamp) === 0) {
-							return -1;
-						}
-						return new Date(b.timestamp) - new Date(a.timestamp);
-					})
-				);
+				data.sort((a, b) => {
+					if (new Date(b.timestamp) - new Date(a.timestamp) === 0) {
+						return -1;
+					}
+					return new Date(b.timestamp) - new Date(a.timestamp);
+				});
+				setPosts(data);
 				setLoading(false);
 			});
 	}
@@ -59,6 +59,7 @@ function Posts() {
 										getPosts={getPosts}
 										postLikes={post.likes}
 									/>
+									<PostDelete postId={post._id} getPosts={getPosts} />
 								</div>
 							</div>
 						);
