@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+
 import PageSidebar from '../Homepage/PageSidebar';
-import CommentForm from './CommentForm';
-import PostLikes from '../Homepage/PostLikes';
+import CommentForm from './CommentAdd';
+import PostLikes from '../subcomponents/PostLikes';
 import CommentDelete from './CommentDelete';
 import './post.css';
 
@@ -37,19 +38,19 @@ function Post() {
 
 	return (
 		<div className="post-info-page">
-			<div className="post-info-container">
+			<div className="post-info-content">
 				{loading ? (
 					<div>Loading...</div>
 				) : (
 					<div>
-						<div className="comment-header">
-							<div className="comment-title">
+						<div className="treet-header">
+							<div className="treet-title">
 								<h3>{postInfo.author}</h3>
 								<p>on {postInfo.timestamp}</p>
 							</div>
 							<p>{postInfo.content}</p>
 						</div>
-						<div className="comment-footer">
+						<div className="treet-footer">
 							<CommentForm postId={postId} getComments={getComments} />
 							<PostLikes
 								postId={postId}
@@ -62,16 +63,18 @@ function Post() {
 							{postInfo.comments.map((comment) => {
 								return (
 									<div className="post-comment">
-										<div className="comment-title">
+										<div className="post-comment-title">
 											<h4>{comment.author}</h4>
 											<p>on {comment.timestamp}</p>
 										</div>
 										<p>{comment.content}</p>
-										<CommentDelete
-											postId={postId}
-											getComments={getComments}
-											comment={comment}
-										/>
+										<div className="post-comment-footer">
+											<CommentDelete
+												postId={postId}
+												getComments={getComments}
+												comment={comment}
+											/>
+										</div>
 									</div>
 								);
 							})}

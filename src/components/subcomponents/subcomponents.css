@@ -1,0 +1,21 @@
+.footer-button {
+	border: none;
+	background-color: none;
+	background: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	text-decoration: none;
+	color: inherit;
+}
+
+.footer-button img {
+	width: 20px;
+	height: 20px;
+	filter: invert(1);
+}
+
+.footer-button:hover {
+	filter: invert(1);
+}

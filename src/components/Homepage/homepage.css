@@ -93,47 +93,13 @@
 	color: rgb(145, 145, 145);
 }
 
-.post-footer {
+.post-footer,
+.post-comment-footer {
 	display: flex;
 	gap: 10px;
 	align-items: center;
 	justify-content: space-around;
 	margin-top: auto;
-}
-
-.post-footer button,
-.post-footer a {
-	border: none;
-	background-color: none;
-	background: none;
-	padding: 0;
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
-
-.post-footer button:hover {
-	filter: invert(1);
-}
-
-.post-footer a {
-	text-decoration: none;
-	color: inherit;
-}
-
-.post-footer a:hover {
-	filter: invert(1);
-}
-
-.post-footer button p {
-	color: white;
-	font-size: 16px;
-}
-
-.like-icon {
-	width: 20px;
-	height: 20px;
-	filter: invert(1);
 }
 
 /* /////////////////////////// */

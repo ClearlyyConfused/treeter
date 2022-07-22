@@ -1,3 +1,5 @@
+import deleteIcon from '../../images/delete.svg';
+
 function CommentDelete({ postId, getComments, comment }) {
 	function handleClick() {
 		fetch('https://treeter-api.herokuapp.com/posts/' + postId + '/comment/delete', {
@@ -10,7 +12,11 @@ function CommentDelete({ postId, getComments, comment }) {
 		}).then(() => getComments());
 	}
 
-	return <button onClick={handleClick}>Del</button>;
+	return (
+		<button className="footer-button" onClick={handleClick}>
+			<img src={deleteIcon} alt="Delete" />
+		</button>
+	);
 }
 
 export default CommentDelete;

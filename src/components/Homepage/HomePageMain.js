@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import PostForm from './PostForm';
-import PostLikes from './PostLikes';
-import PostComments from './PostComments';
-import PostDelete from './PostDelete';
+import PostAdd from './PostAdd';
+import PostLikes from '../subcomponents/PostLikes';
+import PostComments from '../subcomponents/PostComments';
+import PostDelete from '../subcomponents/PostDelete';
 
 function Posts() {
 	const [posts, setPosts] = useState([]);
@@ -35,7 +35,7 @@ function Posts() {
 	return (
 		<div className="homepage-posts">
 			<h1>All Posts</h1>
-			<PostForm getPosts={getPosts} />
+			<PostAdd getPosts={getPosts} />
 			{loading ? (
 				<div>Loading Posts...</div>
 			) : (

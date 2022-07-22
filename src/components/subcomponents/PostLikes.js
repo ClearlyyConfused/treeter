@@ -16,7 +16,7 @@ function PostLikes({ postId, getPosts, postLikes }) {
 		? likeIconFilled
 		: likeIconEmpty;
 	return (
-		<button onClick={handleClick}>
+		<button className="footer-button" onClick={handleClick}>
 			<img className="like-icon" src={likeIconSrc} alt="Like" />
 			<p>{postLikes.length}</p>
 		</button>
