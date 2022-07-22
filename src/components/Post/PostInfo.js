@@ -5,6 +5,7 @@ import PageSidebar from '../Homepage/PageSidebar';
 import CommentForm from './CommentAdd';
 import PostLikes from '../subcomponents/PostLikes';
 import CommentDelete from './CommentDelete';
+import CommentUpdate from './CommentUpdate';
 import './post.css';
 
 function Post() {
@@ -46,7 +47,8 @@ function Post() {
 						<div className="treet-header">
 							<div className="treet-title">
 								<h3>{postInfo.author}</h3>
-								<p>on {postInfo.timestamp}</p>
+								{postInfo.updated ? <p>updated</p> : <p>on</p>}
+								<p>{postInfo.timestamp}</p>
 							</div>
 							<p>{postInfo.content}</p>
 						</div>
@@ -74,6 +76,7 @@ function Post() {
 												getComments={getComments}
 												comment={comment}
 											/>
+											<CommentUpdate comment={comment} />
 										</div>
 									</div>
 								);

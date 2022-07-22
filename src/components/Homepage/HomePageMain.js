@@ -3,6 +3,7 @@ import PostAdd from './PostAdd';
 import PostLikes from '../subcomponents/PostLikes';
 import PostComments from '../subcomponents/PostComments';
 import PostDelete from '../subcomponents/PostDelete';
+import PostUpdate from '../subcomponents/PostUpdate';
 
 function Posts() {
 	const [posts, setPosts] = useState([]);
@@ -45,7 +46,8 @@ function Posts() {
 							<div className="homepage-post">
 								<div className="post-title">
 									<h4>{post.author}</h4>
-									<p>on {post.timestamp}</p>
+									{post.updated ? <p>updated</p> : <p>on</p>}
+									<p>{post.timestamp}</p>
 								</div>
 								<p>{post.content}</p>
 								<div className="post-footer">
@@ -59,6 +61,7 @@ function Posts() {
 										getPosts={getPosts}
 										postLikes={post.likes}
 									/>
+									<PostUpdate postId={post._id} />
 									<PostDelete postId={post._id} getPosts={getPosts} />
 								</div>
 							</div>
