@@ -1,14 +1,21 @@
-import commentIcon from '../../images/chat.svg';
+import editIcon from '../../images/pencil.svg';
 import './subcomponents.css';
 import { useState } from 'react';
+import PostUpdateForm from './PostUpdateForm';
 
 function PostUpdate({ postId }) {
-	const [display, setDisplay] = useState(false);
+	const [display, setDisplay] = useState(true);
 
 	return (
-		<a className="footer-button" href={postId + '/update'}>
-			<img className="like-icon" src={commentIcon} alt="Like" />
-		</a>
+		<div>
+			{display ? (
+				<button className="footer-button" onClick={() => setDisplay(false)}>
+					<img className="like-icon" src={editIcon} alt="Like" />
+				</button>
+			) : (
+				<PostUpdateForm postId={postId} setDisplay={setDisplay} />
+			)}
+		</div>
 	);
 }
 

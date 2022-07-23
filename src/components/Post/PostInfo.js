@@ -67,7 +67,8 @@ function Post() {
 									<div className="post-comment">
 										<div className="post-comment-title">
 											<h4>{comment.author}</h4>
-											<p>on {comment.timestamp}</p>
+											{comment.updated ? <p>updated</p> : <p>on</p>}
+											<p>{comment.timestamp}</p>
 										</div>
 										<p>{comment.content}</p>
 										<div className="post-comment-footer">
@@ -76,7 +77,7 @@ function Post() {
 												getComments={getComments}
 												comment={comment}
 											/>
-											<CommentUpdate comment={comment} />
+											<CommentUpdate comment={comment} postId={postId} />
 										</div>
 									</div>
 								);

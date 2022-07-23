@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
-function PostUpdate() {
-	const { postId } = useParams();
+function PostUpdateForm({ postId, setDisplay }) {
 	const [content, setContent] = useState('');
 
 	function handleSubmit(e) {
@@ -27,7 +25,7 @@ function PostUpdate() {
 	}
 
 	return (
-		<div className="post-form">
+		<div className="post-form post-update-form">
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -37,9 +35,10 @@ function PostUpdate() {
 					maxLength="250"
 				/>
 				<button type="submit">Update</button>
+				<button onClick={() => setDisplay(true)}>Cancel</button>
 			</form>
 		</div>
 	);
 }
 
-export default PostUpdate;
+export default PostUpdateForm;

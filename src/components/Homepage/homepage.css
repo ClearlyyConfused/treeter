@@ -50,7 +50,7 @@
 /* /////////////////////////// */
 
 .homepage-posts {
-	width: 615px;
+	width: 725px;
 	box-sizing: border-box;
 	border: 1px solid rgba(184, 184, 184, 0.3);
 	background-color: #4d3238;
@@ -70,7 +70,8 @@
 	border: 1px solid rgba(184, 184, 184, 0.3);
 	border-left: none;
 	border-right: none;
-	height: 135px;
+	min-height: 135px;
+	height: fit-content;
 }
 
 .homepage-post > p {

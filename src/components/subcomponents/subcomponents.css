@@ -19,3 +19,7 @@
 .footer-button:hover {
 	filter: invert(1);
 }
+
+.post-update-form {
+	padding: 0px !important;
+}

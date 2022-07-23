@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
-function CommentUpdateForm({ comment }) {
-	const { postId } = useParams();
+function CommentUpdateForm({ comment, postId, setDisplay }) {
 	const [content, setContent] = useState('');
 
 	function handleSubmit(e) {
@@ -22,14 +20,12 @@ function CommentUpdateForm({ comment }) {
 				token: localStorage.getItem('token'),
 			},
 			body: JSON.stringify({ content: content, timestamp: timestamp, comment: comment }),
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data));
+		}).then(() => window.location.reload());
 		setContent('');
 	}
 
 	return (
-		<div className="post-form">
+		<div className="post-form post-update-form">
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -39,6 +35,7 @@ function CommentUpdateForm({ comment }) {
 					maxLength="250"
 				/>
 				<button type="submit">Update</button>
+				<button onClick={() => setDisplay(true)}>Cancel</button>
 			</form>
 		</div>
 	);

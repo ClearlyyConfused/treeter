@@ -61,8 +61,8 @@ function Posts() {
 										getPosts={getPosts}
 										postLikes={post.likes}
 									/>
-									<PostUpdate postId={post._id} />
 									<PostDelete postId={post._id} getPosts={getPosts} />
+									<PostUpdate postId={post._id} />
 								</div>
 							</div>
 						);
