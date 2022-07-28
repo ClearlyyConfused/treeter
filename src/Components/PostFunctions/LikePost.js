@@ -1,9 +1,9 @@
-import likeIconEmpty from '../../images/cards-heart-outline.svg';
-import likeIconFilled from '../../images/cards-heart.svg';
+import likeIconEmpty from '../../Images/like-icon-outline.svg';
+import likeIconFilled from '../../Images/like-icon-filled.svg';
 
-function PostLikes({ postId, getPosts, postLikes }) {
+function PostLikes({ post, getPosts }) {
 	function handleClick() {
-		fetch('https://treeter-api.herokuapp.com/posts/' + postId + '/like', {
+		fetch('https://treeter-api.herokuapp.com/posts/' + post._id + '/like', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -12,13 +12,13 @@ function PostLikes({ postId, getPosts, postLikes }) {
 		}).then(() => getPosts());
 	}
 
-	const likeIconSrc = postLikes.includes(localStorage.getItem('username'))
+	const likeIconSrc = post.likes.includes(localStorage.getItem('username'))
 		? likeIconFilled
 		: likeIconEmpty;
 	return (
 		<button className="footer-button" onClick={handleClick}>
 			<img className="like-icon" src={likeIconSrc} alt="Like" />
-			<p>{postLikes.length}</p>
+			<p>{post.likes.length}</p>
 		</button>
 	);
 }

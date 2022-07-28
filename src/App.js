@@ -1,5 +1,5 @@
-import StartPage from './components/StartPage/StartPage';
-import HomePage from './components/Homepage/HomePage';
+import StartPage from './Pages/Startpage/StartPage';
+import HomePage from './Pages/Homepage/Homepage';
 
 function App() {
 	return (

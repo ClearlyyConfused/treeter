@@ -1,8 +1,7 @@
-import './startpage.css';
 import { useState } from 'react';
-
-import RegisterPage from './RegisterPage';
-import LoginPage from './LoginPage';
+import RegisterPage from '../../Auth/RegisterPage';
+import LoginPage from '../../Auth/LoginPage';
+import './startpage.css';
 
 function StartPage() {
 	const [currentPage, setCurrentPage] = useState('StartPage');

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Post from './components/Post/PostInfo';
-import PostUpdateForm from './components/subcomponents/PostUpdateForm';
+import Post from './Pages/PostInfopage/PostInfo';
+import PostUpdateForm from './Components/UpdatePost';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

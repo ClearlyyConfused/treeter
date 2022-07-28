@@ -1,4 +1,4 @@
-import deleteIcon from '../../images/delete.svg';
+import deleteIcon from '../../Images/delete-icon.svg';
 
 function CommentDelete({ postId, getComments, comment }) {
 	function handleClick() {

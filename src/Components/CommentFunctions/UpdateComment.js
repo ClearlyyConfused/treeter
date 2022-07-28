@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import editIcon from '../../Images/edit-icon.svg';
 
-function CommentUpdateForm({ comment, postId, setDisplay }) {
+function CommentUpdateForm({ comment, postId }) {
 	const [content, setContent] = useState('');
+	const [display, setDisplay] = useState(true);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -25,18 +27,26 @@ function CommentUpdateForm({ comment, postId, setDisplay }) {
 	}
 
 	return (
-		<div className="post-form post-update-form">
-			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					name="content"
-					value={content}
-					onChange={(e) => setContent(e.target.value)}
-					maxLength="250"
-				/>
-				<button type="submit">Update</button>
-				<button onClick={() => setDisplay(true)}>Cancel</button>
-			</form>
+		<div>
+			{display ? (
+				<button className="footer-button" onClick={() => setDisplay(false)}>
+					<img className="like-icon" src={editIcon} alt="Like" />
+				</button>
+			) : (
+				<div className="post-form post-update-form">
+					<form onSubmit={handleSubmit}>
+						<input
+							type="text"
+							name="content"
+							value={content}
+							onChange={(e) => setContent(e.target.value)}
+							maxLength="250"
+						/>
+						<button type="submit">Update</button>
+						<button onClick={() => setDisplay(true)}>Cancel</button>
+					</form>
+				</div>
+			)}
 		</div>
 	);
 }
