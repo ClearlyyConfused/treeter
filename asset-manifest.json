@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/treeter/static/css/main.987b3576.css",
-    "main.js": "/treeter/static/js/main.af0586f5.js",
+    "main.js": "/treeter/static/js/main.d2c01d3e.js",
     "index.html": "/treeter/index.html",
     "static/media/like-icon-outline.svg": "/treeter/static/media/like-icon-outline.c6d27dca66d0ee6c8325b0ce61a51cbc.svg",
     "static/media/comment-icon-outline.svg": "/treeter/static/media/comment-icon-outline.2124b3c058e2007f48bd219dbdbf92ce.svg",
@@ -10,10 +10,10 @@
     "static/media/edit-icon.svg": "/treeter/static/media/edit-icon.8d317290131028fe10cf061de2c09812.svg",
     "static/media/delete-icon.svg": "/treeter/static/media/delete-icon.bde675c38d54979f589e6b290bea398a.svg",
     "main.987b3576.css.map": "/treeter/static/css/main.987b3576.css.map",
-    "main.af0586f5.js.map": "/treeter/static/js/main.af0586f5.js.map"
+    "main.d2c01d3e.js.map": "/treeter/static/js/main.d2c01d3e.js.map"
   },
   "entrypoints": [
     "static/css/main.987b3576.css",
-    "static/js/main.af0586f5.js"
+    "static/js/main.d2c01d3e.js"
   ]
 }
