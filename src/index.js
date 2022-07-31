@@ -10,8 +10,8 @@ root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Routes>
-				<Route path="/treeter" element={<App />} />
-				<Route path="/treeter/:postId" element={<Post />} />
+				<Route path="/" element={<App />} />
+				<Route path="/:postId" element={<Post />} />
 			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>
