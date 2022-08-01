@@ -27,8 +27,11 @@ function Post() {
 						<div className="treet-header">
 							<div className="treet-title">
 								<h3>{post.author}</h3>
-								{post.updated ? <p>updated</p> : <p>on</p>}
-								<p>{post.timestamp}</p>
+								{post.updated ? (
+									<p>updated {post.timestamp}</p>
+								) : (
+									<p>on {post.timestamp}</p>
+								)}
 							</div>
 							<p>{post.content}</p>
 						</div>
@@ -43,8 +46,11 @@ function Post() {
 									<div className="post-comment">
 										<div className="post-comment-title">
 											<h4>{comment.author}</h4>
-											{comment.updated ? <p>updated</p> : <p>on</p>}
-											<p>{comment.timestamp}</p>
+											{comment.updated ? (
+												<p>updated {comment.timestamp}</p>
+											) : (
+												<p>on {comment.timestamp}</p>
+											)}
 										</div>
 										<p>{comment.content}</p>
 										<div className="post-comment-footer">

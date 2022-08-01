@@ -1,7 +1,7 @@
 .homepage {
 	min-height: 100vh;
 	height: fit-content;
-	padding: 0px 30px;
+	padding: 0px 15px;
 	box-sizing: border-box;
 	background-color: #14080e;
 
@@ -52,7 +52,7 @@
 /* /////////////////////////// */
 
 .homepage-posts {
-	width: 725px;
+	width: 700px;
 	box-sizing: border-box;
 	border: 1px solid rgba(184, 184, 184, 0.3);
 	background-color: #4d3238;
@@ -103,6 +103,8 @@
 	align-items: center;
 	justify-content: space-around;
 	margin-top: auto;
+	padding-top: 30px;
+	flex-wrap: wrap;
 }
 
 /* /////////////////////////// */
@@ -114,6 +116,9 @@
 	}
 	.homepage-posts {
 		width: 100%;
-		min-height: calc(100vh - 175px);
+		min-height: calc(100vh - 80px);
+	}
+	.post-title {
+		flex-direction: column;
 	}
 }

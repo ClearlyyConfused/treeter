@@ -3,6 +3,7 @@
 	height: fit-content;
 	box-sizing: border-box;
 	background-color: #14080e;
+	padding: 0px 15px;
 
 	display: flex;
 	justify-content: center;
@@ -15,7 +16,8 @@
 /* /////////////////////////// */
 
 .post-info-content {
-	width: 725px;
+	max-width: 700px;
+	width: 100%;
 
 	box-sizing: border-box;
 	border: 1px solid rgba(184, 184, 184, 0.3);
@@ -83,4 +85,25 @@
 .post-comment > p {
 	overflow: hidden;
 	overflow-wrap: break-word;
+}
+
+/* /////////////////////////// */
+
+@media (max-width: 700px) {
+	.post-info-page {
+		flex-direction: column-reverse;
+		justify-content: flex-end;
+	}
+	.post-info-content {
+		height: calc(100vh - 80px);
+	}
+	.treet-title {
+		flex-direction: column;
+	}
+	.post-comment-title {
+		flex-direction: column;
+	}
+	.post-update-form button {
+		min-width: fit-content;
+	}
 }

@@ -26,8 +26,11 @@ function HomePage() {
 								<div className="homepage-post">
 									<div className="post-title">
 										<h4>{post.author}</h4>
-										{post.updated ? <p>updated</p> : <p>on</p>}
-										<p>{post.timestamp}</p>
+										{post.updated ? (
+											<p>updated {post.timestamp}</p>
+										) : (
+											<p>on {post.timestamp}</p>
+										)}
 									</div>
 
 									<p>{post.content}</p>

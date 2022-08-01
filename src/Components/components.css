@@ -2,7 +2,7 @@
 	border: none;
 	background-color: none;
 	background: none;
-	padding: 0;
+	padding-right: 15px;
 	display: flex;
 	align-items: center;
 	gap: 6px;
@@ -36,8 +36,8 @@
 
 	height: 100vh;
 	min-height: fit-content;
-	min-width: 200px;
-	width: 200px;
+	min-width: 225px;
+	width: 225px;
 	box-sizing: border-box;
 	padding: 20px;
 	background-color: #422b30;
@@ -45,6 +45,7 @@
 }
 
 .homepage-sidebar h2 {
+	min-width: 160px;
 	text-align: center;
 	overflow: hidden;
 	overflow-wrap: break-word;
@@ -84,8 +85,16 @@
 		width: 100%;
 		flex-direction: row;
 		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 	.sidebar-buttons {
 		flex-direction: row;
+	}
+}
+
+@media (max-width: 488px) {
+	.homepage-sidebar {
+		justify-content: center;
 	}
 }
