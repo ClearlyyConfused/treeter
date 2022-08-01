@@ -1,6 +1,7 @@
 .homepage {
 	min-height: 100vh;
 	height: fit-content;
+	padding: 0px 30px;
 	box-sizing: border-box;
 	background-color: #14080e;
 
@@ -38,7 +39,8 @@
 }
 
 .post-form input {
-	width: 300px;
+	width: 100%;
+	max-width: 300px;
 	border-radius: 20px;
 	background-color: #7a5059;
 	border: none;
@@ -105,43 +107,13 @@
 
 /* /////////////////////////// */
 
-.homepage-sidebar {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-
-	position: sticky;
-	top: 0;
-
-	max-width: 200px;
-	height: 100vh;
-	min-height: fit-content;
-	padding: 20px;
-	background-color: #422b30;
-}
-
-.homepage-sidebar h2 {
-	overflow: hidden;
-	overflow-wrap: break-word;
-}
-
-.homepage-sidebar button {
-	min-width: 100px;
-	width: 100%;
-
-	border: none;
-	border-radius: 20px;
-	padding: 10px;
-
-	background-color: white;
-	font-weight: 800;
-}
-
-.homepage-sidebar button:hover {
-	background-color: rgb(214, 214, 214);
-}
-
-.homepage-sidebar a {
-	text-decoration: none;
-	color: inherit;
+@media (max-width: 700px) {
+	.homepage {
+		flex-direction: column-reverse;
+		justify-content: flex-end;
+	}
+	.homepage-posts {
+		width: 100%;
+		min-height: calc(100vh - 175px);
+	}
 }

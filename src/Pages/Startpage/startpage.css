@@ -1,5 +1,6 @@
 .start-page {
 	width: 100vw;
+	min-height: 500px;
 	height: 100vh;
 	display: flex;
 }
@@ -17,6 +18,7 @@
 
 .start-page-content {
 	width: 60%;
+	min-height: fit-content;
 	height: 100%;
 	background-color: #4d3238;
 
@@ -35,10 +37,12 @@
 }
 
 .start-page-content h2 {
+	padding-bottom: 5px;
 	font-size: 28px;
 }
 
 .start-page-content h3 {
+	padding-bottom: 5px;
 	font-size: 18px;
 }
 
@@ -99,4 +103,38 @@
 .error-message {
 	margin-top: 20px;
 	color: red;
+}
+
+/* /////////////////////////// */
+
+@media (max-width: 650px) {
+	.start-page {
+		flex-direction: column-reverse;
+	}
+	.start-page-content {
+		width: 100%;
+	}
+	.start-page-content h1 {
+		font-size: calc(35px + 3vw);
+	}
+	.start-page-content h2 {
+		font-size: calc(18px + 2vw);
+	}
+	.start-page-content h3 {
+		font-size: calc(12px + 1vw);
+	}
+	.start-page-content button {
+		max-width: 300px;
+		width: 100%;
+	}
+	.start-page-banner {
+		width: 100%;
+	}
+
+	/* /////////////////////////// */
+
+	.authentication-page form input {
+		width: 85vw;
+		max-width: 300px;
+	}
 }
