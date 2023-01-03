@@ -5,7 +5,7 @@ function PostInfoLogic(postId) {
 	const [loading, setLoading] = useState(true);
 
 	function getComments() {
-		fetch('https://treeter-api.herokuapp.com/posts/' + postId, {
+		fetch('https://treeter-api.onrender.com/posts/' + postId, {
 			headers: {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),

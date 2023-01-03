@@ -15,7 +15,7 @@ function CommentUpdateForm({ comment, postId }) {
 			hour: 'numeric',
 			minute: 'numeric',
 		});
-		fetch('https://treeter-api.herokuapp.com/posts/' + postId + '/comment/update', {
+		fetch('https://treeter-api.onrender.com/posts/' + postId + '/comment/update', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

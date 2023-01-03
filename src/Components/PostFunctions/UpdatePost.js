@@ -16,7 +16,7 @@ function PostUpdate({ postId }) {
 			hour: 'numeric',
 			minute: 'numeric',
 		});
-		fetch('https://treeter-api.herokuapp.com/posts/' + postId + '/update', {
+		fetch('https://treeter-api.onrender.com/posts/' + postId + '/update', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

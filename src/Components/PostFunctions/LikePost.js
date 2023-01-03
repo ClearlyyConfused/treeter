@@ -3,7 +3,7 @@ import likeIconFilled from '../../Images/like-icon-filled.svg';
 
 function PostLikes({ post, getPosts }) {
 	function handleClick() {
-		fetch('https://treeter-api.herokuapp.com/posts/' + post._id + '/like', {
+		fetch('https://treeter-api.onrender.com/posts/' + post._id + '/like', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

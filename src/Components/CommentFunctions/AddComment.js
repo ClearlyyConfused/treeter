@@ -13,7 +13,7 @@ function CommentForm({ postId, getComments }) {
 			hour: 'numeric',
 			minute: 'numeric',
 		});
-		fetch('https://treeter-api.herokuapp.com/posts/' + postId + '/comment', {
+		fetch('https://treeter-api.onrender.com/posts/' + postId + '/comment', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

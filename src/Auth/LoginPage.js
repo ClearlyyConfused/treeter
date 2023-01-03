@@ -7,7 +7,7 @@ function LoginPage({ setCurrentPage }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		fetch('https://treeter-api.herokuapp.com/login', {
+		fetch('https://treeter-api.onrender.com/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),

@@ -2,7 +2,7 @@ import deleteIcon from '../../Images/delete-icon.svg';
 
 function PostDelete({ postId, getPosts }) {
 	function handleClick() {
-		fetch('https://treeter-api.herokuapp.com/posts/' + postId + '/delete', {
+		fetch('https://treeter-api.onrender.com/posts/' + postId + '/delete', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

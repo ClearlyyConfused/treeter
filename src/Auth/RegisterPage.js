@@ -6,7 +6,7 @@ function RegisterPage({ setCurrentPage }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		fetch('https://treeter-api.herokuapp.com/register', {
+		fetch('https://treeter-api.onrender.com/register', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),
