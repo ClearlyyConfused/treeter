@@ -5,7 +5,7 @@ function HomepageLogic() {
 	const [loading, setLoading] = useState(true);
 
 	function getPosts() {
-		fetch('https://treeter-api.onrender.com/posts', {
+		fetch('https://treeter-api.vercel.app/posts', {
 			headers: {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),

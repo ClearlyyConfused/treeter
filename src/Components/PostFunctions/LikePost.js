@@ -3,7 +3,7 @@ import likeIconFilled from '../../Images/like-icon-filled.svg';
 
 function PostLikes({ post, getPosts }) {
 	function handleClick() {
-		fetch('https://treeter-api.onrender.com/posts/' + post._id + '/like', {
+		fetch('https://treeter-api.vercel.app/posts/' + post._id + '/like', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -12,9 +12,7 @@ function PostLikes({ post, getPosts }) {
 		}).then(() => getPosts());
 	}
 
-	const likeIconSrc = post.likes.includes(localStorage.getItem('username'))
-		? likeIconFilled
-		: likeIconEmpty;
+	const likeIconSrc = post.likes.includes(localStorage.getItem('username')) ? likeIconFilled : likeIconEmpty;
 	return (
 		<button className="footer-button" onClick={handleClick}>
 			<img className="like-icon" src={likeIconSrc} alt="Like" />

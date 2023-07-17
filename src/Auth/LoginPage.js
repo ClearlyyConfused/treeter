@@ -7,7 +7,7 @@ function LoginPage({ setCurrentPage }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		fetch('https://treeter-api.onrender.com/login', {
+		fetch('https://treeter-api.vercel.app/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: username, password: password }),
@@ -29,12 +29,7 @@ function LoginPage({ setCurrentPage }) {
 			<h1>Login</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="username">Username:</label>
-				<input
-					type="text"
-					name="username"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-				/>
+				<input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
 				<label htmlFor="password">Password:</label>
 				<input
 					type="password"

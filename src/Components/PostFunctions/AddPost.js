@@ -13,7 +13,7 @@ function PostForm({ getPosts }) {
 			hour: 'numeric',
 			minute: 'numeric',
 		});
-		fetch('https://treeter-api.onrender.com/posts', {
+		fetch('https://treeter-api.vercel.app/posts', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
