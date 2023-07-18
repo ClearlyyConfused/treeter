@@ -15,6 +15,19 @@ function Post() {
 
 	useEffect(() => {
 		getComments();
+
+		const reqOptions = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				token: localStorage.getItem('token'),
+			},
+		};
+		fetch('https://treeter-api.vercel.app/posts/' + postId + '/view', reqOptions).then((res) =>
+			res.json().then((data) => {
+				console.log(data);
+			})
+		);
 	}, []);
 
 	return (
@@ -27,11 +40,7 @@ function Post() {
 						<div className="treet-header">
 							<div className="treet-title">
 								<h3>{post.author}</h3>
-								{post.updated ? (
-									<p>updated {post.timestamp}</p>
-								) : (
-									<p>on {post.timestamp}</p>
-								)}
+								{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 							</div>
 							<p>{post.content}</p>
 						</div>
@@ -46,19 +55,11 @@ function Post() {
 									<div className="post-comment">
 										<div className="post-comment-title">
 											<h4>{comment.author}</h4>
-											{comment.updated ? (
-												<p>updated {comment.timestamp}</p>
-											) : (
-												<p>on {comment.timestamp}</p>
-											)}
+											{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
 										</div>
 										<p>{comment.content}</p>
 										<div className="post-comment-footer">
-											<DeleteComment
-												postId={postId}
-												getComments={getComments}
-												comment={comment}
-											/>
+											<DeleteComment postId={postId} getComments={getComments} comment={comment} />
 											<UpdateComment comment={comment} postId={postId} />
 										</div>
 									</div>

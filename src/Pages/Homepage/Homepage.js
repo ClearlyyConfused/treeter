@@ -34,7 +34,7 @@ function HomePage() {
 									<div className="post-footer">
 										<CommentPost post={post} />
 										<LikePost post={post} getPosts={getPosts} />
-										<ViewPost />
+										<ViewPost post={post} />
 										<SharePost link={post._id} />
 									</div>
 								</div>

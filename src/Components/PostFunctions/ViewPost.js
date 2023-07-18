@@ -1,10 +1,10 @@
 import view from '../../Images/view.svg';
 
-function ViewPost() {
+function ViewPost({ post }) {
 	return (
 		<button className="footer-button">
 			<img src={view} alt="" />
-			<p>0</p>
+			<p>{post.views}</p>
 		</button>
 	);
 }
