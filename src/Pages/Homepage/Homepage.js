@@ -6,7 +6,7 @@ import './homepage.css';
 
 function HomePage() {
 	const { posts, loading, getPosts } = HomepageLogic();
-	const { AddPost, LikePost, CommentPost, DeletePost, UpdatePost } = PostFunctions();
+	const { AddPost, LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 
 	useEffect(() => {
 		getPosts();
@@ -24,22 +24,18 @@ function HomePage() {
 						{posts.map((post) => {
 							return (
 								<div className="homepage-post">
-									<div className="post-title">
-										<h4>{post.author}</h4>
-										{post.updated ? (
-											<p>updated {post.timestamp}</p>
-										) : (
-											<p>on {post.timestamp}</p>
-										)}
-									</div>
-
-									<p>{post.content}</p>
-
+									<a className="homepage-post-content" href={post._id}>
+										<div className="post-title">
+											<h4>{post.author}</h4>
+											{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
+										</div>
+										<p>{post.content}</p>
+									</a>
 									<div className="post-footer">
 										<CommentPost post={post} />
 										<LikePost post={post} getPosts={getPosts} />
-										<DeletePost postId={post._id} getPosts={getPosts} />
-										<UpdatePost postId={post._id} />
+										<ViewPost />
+										<SharePost link={post._id} />
 									</div>
 								</div>
 							);
