@@ -30,11 +30,29 @@
 
 /* /////////////////////////// */
 
-.treet-header {
-	padding: 15px;
-	padding-bottom: 0px;
-	p {
-		font-size: 22px;
+.treet {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 15px 25px;
+	border-bottom: 1px solid lighten(colors.$content-background-brown, 10);
+
+	.treet-title {
+		h3,
+		p {
+			font-size: 22px;
+		}
+	}
+
+	.treet-footer {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 20px;
+		width: 100%;
+	}
+
+	> p {
+		font-size: 20px;
 		overflow: hidden;
 		overflow-wrap: break-word;
 	}
@@ -46,11 +64,9 @@
 	gap: 5px;
 	font-size: 16px;
 	font-weight: 600;
-	color: rgb(145, 145, 145);
 
-	h3 {
-		font-size: 22px;
-		color: white;
+	p {
+		color: rgb(145, 145, 145);
 	}
 }
 
@@ -63,27 +79,47 @@
 
 /* /////////////////////////// */
 
-.post-comment {
-	display: flex;
-	flex-direction: column;
-	position: relative;
+.post-comments {
+	.post-form {
+		form {
+			textarea {
+				max-width: none;
+				min-width: calc(100% - 110px);
+				min-height: 80px;
+				height: fit-content;
+				font-size: 16px;
+				box-sizing: border-box;
+				&::placeholder {
+					color: rgb(220, 220, 220);
+				}
+			}
 
-	padding: 15px;
-	padding-bottom: 10px;
-
-	border: 1px solid lighten(colors.$content-background-brown, 10);
-	border-left: none;
-	border-right: none;
-
-	min-height: 135px;
-	height: fit-content;
-
-	h4 {
-		color: white;
+			button {
+				height: fit-content;
+			}
+		}
 	}
-	> p {
-		overflow: hidden;
-		overflow-wrap: break-word;
+
+	.post-comment {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+
+		padding: 25px;
+
+		border: 1px solid lighten(colors.$content-background-brown, 10);
+		border-left: none;
+		border-right: none;
+
+		height: fit-content;
+
+		h4 {
+			color: white;
+		}
+		> p {
+			overflow: hidden;
+			overflow-wrap: break-word;
+		}
 	}
 }
 

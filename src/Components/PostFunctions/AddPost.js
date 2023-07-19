@@ -27,12 +27,13 @@ function PostForm({ getPosts }) {
 	return (
 		<div className="post-form">
 			<form onSubmit={handleSubmit}>
-				<input
+				<textarea
 					type="text"
 					name="content"
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
 					maxLength="250"
+					placeholder="Send out a Treet!"
 				/>
 				<button type="submit">Treet</button>
 			</form>

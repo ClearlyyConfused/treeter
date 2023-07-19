@@ -27,12 +27,13 @@ function CommentForm({ postId, getComments }) {
 	return (
 		<div className="post-form">
 			<form onSubmit={handleSubmit}>
-				<input
+				<textarea
 					type="text"
 					name="content"
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
 					maxLength="250"
+					placeholder="Treet your reply!"
 				/>
 				<button type="submit">Comment</button>
 			</form>

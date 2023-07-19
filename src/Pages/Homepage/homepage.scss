@@ -32,19 +32,30 @@
 		background-color: colors.$action-button-green;
 		color: white;
 		font-weight: 800;
+		height: fit-content;
+
 		&:hover {
 			background-color: darken(colors.$action-button-green, 10);
 		}
 	}
-	input {
-		width: 100%;
-		max-width: 300px;
+	textarea {
+		min-width: calc(100% - 140px);
+		min-height: 80px;
+		max-height: 80px;
 		border-radius: 20px;
 		background-color: lighten(colors.$content-background-brown, 10);
 		border: none;
 		align-self: center;
-		padding: 10px;
+		padding: 15px;
 		color: white;
+		font-size: 16px;
+
+		&::placeholder {
+			color: rgb(220, 220, 220);
+		}
+		&:focus {
+			outline: none;
+		}
 	}
 }
 
@@ -69,7 +80,7 @@
 	border: 1px solid lighten(colors.$content-background-brown, 10);
 	border-left: none;
 	border-right: none;
-	height: 175px;
+	height: fit-content;
 	position: relative;
 
 	.homepage-post-content {
@@ -77,7 +88,7 @@
 		color: inherit;
 		text-decoration: none;
 		padding: 20px;
-		padding-bottom: 10px;
+		padding-bottom: calc(55px + 20px);
 	}
 
 	> p {
@@ -109,7 +120,7 @@
 	margin-top: auto;
 	flex-wrap: wrap;
 	position: absolute;
-	bottom: 15px;
+	bottom: 5px;
 	width: 100%;
 
 	// makes container non-clickable -> makes clicking on post go to the post's page
@@ -118,17 +129,28 @@
 		// makes container buttons clickable -> clicking on buttons don't go to post's page
 		pointer-events: auto;
 		padding: 10px;
-
-		// fade out transition for share button message
-		.hidden {
-			transition: opacity 2s;
-			opacity: 0;
-		}
+		position: relative;
+	}
+	> div {
+		padding: 10px;
 	}
 
 	// aligns footer in the middle
 	left: 50%;
 	transform: translate(-50%, 0);
+}
+
+// fade out transition for share button message
+.hidden {
+	transition: opacity 2s;
+	opacity: 0;
+}
+.link-copied {
+	position: absolute;
+	left: -15px;
+	top: -15px;
+	min-width: 75px;
+	z-index: 5;
 }
 
 /* /////////////////////////// */

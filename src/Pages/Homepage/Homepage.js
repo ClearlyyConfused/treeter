@@ -10,7 +10,7 @@ function HomePage() {
 
 	useEffect(() => {
 		getPosts();
-	}, []);
+	}, [getPosts]);
 
 	return (
 		<div className="homepage">

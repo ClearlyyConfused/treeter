@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import PostInfoLogic from './PostInfoLogic';
 import PageSidebar from '../../Components/PageSidebar';
-import PostLikes from '../../Components/PostFunctions/LikePost';
 import CommentFunctions from '../../Components/CommentFunctions/CommentFunctions';
+import PostFunctions from '../../Components/PostFunctions/PostFunctions';
+import HomepageLogic from '../Homepage/HomepageLogic';
 
 import './post.css';
 
@@ -12,23 +13,29 @@ function Post() {
 	const { postId } = useParams();
 	const { post, loading, getComments } = PostInfoLogic(postId);
 	const { AddComment, DeleteComment, UpdateComment } = CommentFunctions();
+	const { getPosts } = HomepageLogic();
+	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
+
+	const [viewed, setViewed] = useState(false);
+	// false -> API fetch to count current view -> reload with updated views -> true
 
 	useEffect(() => {
 		getComments();
-
-		const reqOptions = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				token: localStorage.getItem('token'),
-			},
-		};
-		fetch('https://treeter-api.vercel.app/posts/' + postId + '/view', reqOptions).then((res) =>
-			res.json().then((data) => {
-				console.log(data);
-			})
-		);
-	}, []);
+		if (!viewed) {
+			const reqOptions = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					token: localStorage.getItem('token'),
+				},
+			};
+			fetch('https://treeter-api.vercel.app/posts/' + postId + '/view', reqOptions).then((res) =>
+				res.json().then((data) => {
+					setViewed(true);
+				})
+			);
+		}
+	}, [viewed]);
 
 	return (
 		<div className="post-info-page">
@@ -37,19 +44,22 @@ function Post() {
 					<div>Loading...</div>
 				) : (
 					<div>
-						<div className="treet-header">
+						<div className="treet">
 							<div className="treet-title">
 								<h3>{post.author}</h3>
 								{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 							</div>
 							<p>{post.content}</p>
-						</div>
-						<div className="treet-footer">
-							<AddComment postId={postId} getComments={getComments} />
-							<PostLikes post={post} getPosts={getComments} />
+							<div className="treet-footer">
+								<CommentPost post={post} />
+								<LikePost post={post} getPosts={getPosts} />
+								<ViewPost post={post} />
+								<SharePost link={post._id} />
+							</div>
 						</div>
 
 						<div className="post-comments">
+							<AddComment postId={postId} getComments={getComments} />
 							{post.comments.map((comment) => {
 								return (
 									<div className="post-comment">
@@ -59,8 +69,10 @@ function Post() {
 										</div>
 										<p>{comment.content}</p>
 										<div className="post-comment-footer">
+											{/* 
 											<DeleteComment postId={postId} getComments={getComments} comment={comment} />
 											<UpdateComment comment={comment} postId={postId} />
+											*/}
 										</div>
 									</div>
 								);

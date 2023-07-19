@@ -30,7 +30,7 @@ function SharePost({ link }) {
 			}}
 		>
 			<img src={share} alt="" />
-			<p className={displayMessage ? '' : 'hidden'}>Link Copied</p>
+			<p className={displayMessage ? 'link-copied' : 'link-copied hidden'}>Link Copied</p>
 		</button>
 	);
 }
