@@ -5,22 +5,20 @@ import PostInfoLogic from './PostInfoLogic';
 import PageSidebar from '../../Components/PageSidebar';
 import CommentFunctions from '../../Components/CommentFunctions/CommentFunctions';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
-import HomepageLogic from '../Homepage/HomepageLogic';
 
 import './post.css';
 
 function Post() {
 	const { postId } = useParams();
-	const { post, loading, getComments } = PostInfoLogic(postId);
-	const { AddComment, DeleteComment, UpdateComment } = CommentFunctions();
-	const { getPosts } = HomepageLogic();
+	const { post, loading, getPostData } = PostInfoLogic(postId);
+	const { AddComment } = CommentFunctions();
 	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 
 	const [viewed, setViewed] = useState(false);
 	// false -> API fetch to count current view -> reload with updated views -> true
 
 	useEffect(() => {
-		getComments();
+		getPostData();
 		if (!viewed) {
 			const reqOptions = {
 				method: 'POST',
@@ -52,14 +50,14 @@ function Post() {
 							<p>{post.content}</p>
 							<div className="treet-footer">
 								<CommentPost post={post} />
-								<LikePost post={post} getPosts={getPosts} />
+								<LikePost post={post} getPosts={getPostData} />
 								<ViewPost post={post} />
 								<SharePost link={post._id} />
 							</div>
 						</div>
 
 						<div className="post-comments">
-							<AddComment postId={postId} getComments={getComments} />
+							<AddComment postId={postId} getComments={getPostData} />
 							{post.comments.map((comment) => {
 								return (
 									<div className="post-comment">

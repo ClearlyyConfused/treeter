@@ -1,5 +1,11 @@
 @use '../../Variables/colors';
 
+$mobile-width: 600px;
+
+$tweet-user-size: 24px;
+$tweet-timestamp-size: 16px;
+$tweet-content-size: 18px;
+
 .post-info-page {
 	min-height: 100vh;
 	height: fit-content;
@@ -25,7 +31,6 @@
 	border: 1px solid lighten(colors.$content-background-brown, 10);
 
 	background-color: colors.$content-background-brown;
-	box-shadow: 3px 2px 5px 1px darken(colors.$content-background-brown, 10);
 }
 
 /* /////////////////////////// */
@@ -38,10 +43,29 @@
 	border-bottom: 1px solid lighten(colors.$content-background-brown, 10);
 
 	.treet-title {
-		h3,
-		p {
-			font-size: 22px;
+		// main treet user
+		h3 {
+			font-size: calc($tweet-user-size + 12px);
+			font-weight: 800;
 		}
+		// main treet timestamp
+		p {
+			font-size: calc($tweet-timestamp-size + 4px);
+			padding-top: 16px;
+			font-weight: 300;
+			color: rgb(145, 145, 145);
+
+			@media (max-width: $mobile-width) {
+				padding-top: 0px;
+			}
+		}
+	}
+
+	// main treet content
+	> p {
+		font-weight: 300;
+		font-size: calc($tweet-content-size + 2px);
+		line-height: 32px;
 	}
 
 	.treet-footer {
@@ -50,20 +74,12 @@
 		padding-top: 20px;
 		width: 100%;
 	}
-
-	> p {
-		font-size: 20px;
-		overflow: hidden;
-		overflow-wrap: break-word;
-	}
 }
 
 .treet-title,
 .post-comment-title {
 	display: flex;
 	gap: 5px;
-	font-size: 16px;
-	font-weight: 600;
 
 	p {
 		color: rgb(145, 145, 145);
@@ -72,6 +88,14 @@
 
 .treet-footer {
 	display: flex;
+	button {
+		position: relative;
+		.link-copied {
+			font-size: 13px;
+			left: -20px;
+			top: -20px;
+		}
+	}
 	p {
 		font-size: 20px;
 	}
@@ -105,6 +129,7 @@
 		flex-direction: column;
 		position: relative;
 
+		gap: 10px;
 		padding: 25px;
 
 		border: 1px solid lighten(colors.$content-background-brown, 10);
@@ -113,22 +138,41 @@
 
 		height: fit-content;
 
-		h4 {
-			color: white;
+		.post-comment-title {
+			// comment user
+			h4 {
+				font-size: $tweet-user-size;
+				font-weight: 800;
+			}
+			// comment timestamp
+			p {
+				font-size: $tweet-timestamp-size;
+				padding-top: 8px;
+				font-weight: 300;
+				color: rgb(145, 145, 145);
+
+				@media (max-width: $mobile-width) {
+					padding-top: 0px;
+				}
+			}
 		}
+
+		// comment content
 		> p {
-			overflow: hidden;
-			overflow-wrap: break-word;
+			font-weight: 300;
+			font-size: $tweet-content-size;
+			line-height: 25px;
 		}
 	}
 }
 
 /* /////////////////////////// */
 
-@media (max-width: 700px) {
+@media (max-width: $mobile-width) {
 	.post-info-page {
 		flex-direction: column-reverse;
 		justify-content: flex-end;
+		padding: 0px;
 	}
 	.post-info-content {
 		min-height: calc(100vh - 80px);

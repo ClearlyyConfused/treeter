@@ -4,7 +4,7 @@ function PostInfoLogic(postId) {
 	const [post, setPost] = useState(null);
 	const [loading, setLoading] = useState(true);
 
-	function getComments() {
+	function getPostData() {
 		fetch('https://treeter-api.vercel.app/posts/' + postId, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function PostInfoLogic(postId) {
 			});
 	}
 
-	return { post, loading, getComments };
+	return { post, loading, getPostData };
 }
 
 export default PostInfoLogic;

@@ -5,6 +5,7 @@ function HomepageLogic() {
 	const [loading, setLoading] = useState(true);
 
 	function getPosts() {
+		console.log('ran');
 		fetch('https://treeter-api.vercel.app/posts', {
 			headers: {
 				'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ function HomePage() {
 	return (
 		<div className="homepage">
 			<div className="homepage-posts">
-				<h1>All Posts</h1>
+				<h1>Home</h1>
 				<AddPost getPosts={getPosts} />
 				{loading ? (
 					<div>Loading Posts...</div>
