@@ -65,6 +65,46 @@ $tweet-content-size: 18px;
 	}
 }
 
+.homepage-header {
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	gap: 10px;
+	h1 {
+		font-size: 40px;
+	}
+
+	div {
+		position: relative;
+
+		img {
+			width: 75px;
+			height: 75px;
+			border-radius: 50px;
+		}
+		label {
+			border-radius: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 75px;
+			height: 75px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: 12px;
+			background-color: black;
+			opacity: 0;
+			transition: opacity 0.5s;
+
+			&:hover {
+				cursor: pointer;
+				opacity: 0.8;
+			}
+		}
+	}
+}
+
 /* /////////////////////////// */
 
 .homepage-posts {
@@ -72,12 +112,6 @@ $tweet-content-size: 18px;
 	box-sizing: border-box;
 	border: 1px solid lighten(colors.$content-background-brown, 10);
 	background-color: colors.$content-background-brown;
-
-	h1 {
-		font-size: 40px;
-		padding: 15px;
-		padding-bottom: 0;
-	}
 }
 
 .homepage-post {
@@ -103,6 +137,11 @@ $tweet-content-size: 18px;
 			display: flex;
 			gap: 5px;
 
+			img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50px;
+			}
 			// treet user
 			h4 {
 				font-size: $tweet-user-size;

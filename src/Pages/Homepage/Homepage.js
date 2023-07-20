@@ -5,17 +5,39 @@ import HomepageLogic from './HomepageLogic';
 import './homepage.css';
 
 function HomePage() {
-	const { posts, loading, getPosts } = HomepageLogic();
+	const { posts, loading, getPosts, uploadPFP, getPFP, profilePictures } = HomepageLogic();
 	const { AddPost, LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 
 	useEffect(() => {
 		getPosts();
-	}, [getPosts]);
+	}, []);
 
 	return (
 		<div className="homepage">
 			<div className="homepage-posts">
-				<h1>Home</h1>
+				<div className="homepage-header">
+					<h1>Home</h1>
+					<div>
+						<img
+							src={
+								profilePictures[localStorage.username]
+									? profilePictures[localStorage.username]
+									: getPFP(localStorage.username)
+							}
+							alt=""
+						/>
+						<form onChange={uploadPFP}>
+							<label htmlFor="image">Change PFP</label>
+							<input
+								style={{ display: 'none' }}
+								type="file"
+								id="image"
+								name="image"
+								accept="image/png, image/jpeg"
+							></input>
+						</form>
+					</div>
+				</div>
 				<AddPost getPosts={getPosts} />
 				{loading ? (
 					<div>Loading Posts...</div>
@@ -26,6 +48,12 @@ function HomePage() {
 								<div className="homepage-post">
 									<a className="homepage-post-content" href={post._id}>
 										<div className="post-title">
+											<img
+												src={
+													profilePictures[post.author] ? profilePictures[post.author] : getPFP(post.author)
+												}
+												alt=""
+											/>
 											<h4>{post.author}</h4>
 											{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 										</div>

@@ -5,6 +5,7 @@ import PostInfoLogic from './PostInfoLogic';
 import PageSidebar from '../../Components/PageSidebar';
 import CommentFunctions from '../../Components/CommentFunctions/CommentFunctions';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
+import HomepageLogic from '../Homepage/HomepageLogic';
 
 import './post.css';
 
@@ -13,6 +14,7 @@ function Post() {
 	const { post, loading, getPostData } = PostInfoLogic(postId);
 	const { AddComment } = CommentFunctions();
 	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
+	const { getPFP, profilePictures } = HomepageLogic();
 
 	const [viewed, setViewed] = useState(false);
 	// false -> API fetch to count current view -> reload with updated views -> true
@@ -44,6 +46,10 @@ function Post() {
 					<div>
 						<div className="treet">
 							<div className="treet-title">
+								<img
+									src={profilePictures[post.author] ? profilePictures[post.author] : getPFP(post.author)}
+									alt=""
+								/>
 								<h3>{post.author}</h3>
 								{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 							</div>
@@ -62,6 +68,14 @@ function Post() {
 								return (
 									<div className="post-comment">
 										<div className="post-comment-title">
+											<img
+												src={
+													profilePictures[comment.author]
+														? profilePictures[comment.author]
+														: getPFP(comment.author)
+												}
+												alt=""
+											/>
 											<h4>{comment.author}</h4>
 											{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
 										</div>
