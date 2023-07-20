@@ -5,7 +5,6 @@ function PostForm({ getPosts }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
 		let timestamp = new Date();
 		timestamp = timestamp.toLocaleDateString('en-US', {
 			day: 'numeric',
@@ -15,22 +14,34 @@ function PostForm({ getPosts }) {
 			minute: 'numeric',
 		});
 
-		let reader = new FileReader();
-		reader.readAsDataURL(e.target.elements.postImage.files[0]);
+		if (e.target.elements.postImage.files[0]) {
+			let reader = new FileReader();
+			reader.readAsDataURL(e.target.elements.postImage.files[0]);
 
-		reader.onloadend = () => {
-			const image = reader.result;
+			reader.onloadend = () => {
+				const image = reader.result;
 
+				fetch('https://treeter-api.vercel.app/posts', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						token: localStorage.getItem('token'),
+					},
+					body: JSON.stringify({ content: content, timestamp: timestamp, image: image }),
+				}).then(() => getPosts());
+				setContent('');
+			};
+		} else {
 			fetch('https://treeter-api.vercel.app/posts', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 					token: localStorage.getItem('token'),
 				},
-				body: JSON.stringify({ content: content, timestamp: timestamp, image: image }),
+				body: JSON.stringify({ content: content, timestamp: timestamp }),
 			}).then(() => getPosts());
 			setContent('');
-		};
+		}
 	}
 
 	return (

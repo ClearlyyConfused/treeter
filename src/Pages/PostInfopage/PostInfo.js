@@ -81,6 +81,7 @@ function Post() {
 											{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
 										</div>
 										<p>{comment.content}</p>
+										{comment.image ? <img src={comment.image} alt="" /> : ''}
 										<div className="post-comment-footer">
 											{/* 
 											<DeleteComment postId={postId} getComments={getComments} comment={comment} />
