@@ -58,6 +58,7 @@ function HomePage() {
 											{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 										</div>
 										<p>{post.content}</p>
+										{post.image ? <img src={post.image} alt="" /> : ''}
 									</a>
 									<div className="post-footer">
 										<CommentPost post={post} />

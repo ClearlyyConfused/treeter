@@ -54,6 +54,7 @@ function Post() {
 								{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 							</div>
 							<p>{post.content}</p>
+							<img src={post.image ? post.image : ''} alt="" />
 							<div className="treet-footer">
 								<CommentPost post={post} />
 								<LikePost post={post} getPosts={getPostData} />
