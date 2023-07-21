@@ -12,7 +12,7 @@ import './post.css';
 function Post() {
 	const { postId } = useParams();
 	const { post, loading, getPostData } = PostInfoLogic(postId);
-	const { AddComment } = CommentFunctions();
+	const { AddComment, DeleteComment, UpdateComment } = CommentFunctions();
 	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 	const { getPFP, profilePictures } = HomepageLogic();
 
@@ -53,8 +53,10 @@ function Post() {
 								<h3>{post.author}</h3>
 								{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 							</div>
-							<p>{post.content}</p>
-							<img src={post.image ? post.image : ''} alt="" />
+							<div className="treet-content">
+								<p>{post.content}</p>
+								<img src={post.image ? post.image : ''} alt="" />
+							</div>
 							<div className="treet-footer">
 								<CommentPost post={post} />
 								<LikePost post={post} getPosts={getPostData} />
@@ -80,13 +82,15 @@ function Post() {
 											<h4>{comment.author}</h4>
 											{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
 										</div>
-										<p>{comment.content}</p>
-										{comment.image ? <img src={comment.image} alt="" /> : ''}
+										<div className="post-comment-content">
+											<p>{comment.content}</p>
+											{comment.image ? <img src={comment.image} alt="" /> : ''}
+										</div>
 										<div className="post-comment-footer">
-											{/* 
-											<DeleteComment postId={postId} getComments={getComments} comment={comment} />
+											<DeleteComment postId={postId} getComments={getPostData} comment={comment} />
 											<UpdateComment comment={comment} postId={postId} />
-											*/}
+											<DeleteComment postId={postId} getComments={getPostData} comment={comment} />
+											<UpdateComment comment={comment} postId={postId} />
 										</div>
 									</div>
 								);

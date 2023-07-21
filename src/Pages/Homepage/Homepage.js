@@ -57,8 +57,10 @@ function HomePage() {
 											<h4>{post.author}</h4>
 											{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 										</div>
-										<p>{post.content}</p>
-										{post.image ? <img src={post.image} alt="" /> : ''}
+										<div className="post-content">
+											<p>{post.content}</p>
+											{post.image ? <img src={post.image} alt="" /> : ''}
+										</div>
 									</a>
 									<div className="post-footer">
 										<CommentPost post={post} />

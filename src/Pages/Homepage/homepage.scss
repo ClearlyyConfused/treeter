@@ -6,6 +6,9 @@ $tweet-user-size: 24px;
 $tweet-timestamp-size: 16px;
 $tweet-content-size: 18px;
 
+$post-content-left-padding: 70px;
+$treet-user-pfp-width: 60px;
+
 .homepage {
 	min-height: 100vh;
 	height: fit-content;
@@ -26,8 +29,10 @@ $tweet-content-size: 18px;
 .homepage-header {
 	display: flex;
 	align-items: center;
-	padding: 15px;
+	padding: 15px 25px;
+	padding-bottom: 0px;
 	gap: 10px;
+
 	h1 {
 		font-size: 40px;
 	}
@@ -64,7 +69,7 @@ $tweet-content-size: 18px;
 }
 
 .post-form {
-	padding: 15px;
+	padding: 25px;
 
 	form {
 		display: flex;
@@ -145,20 +150,21 @@ $tweet-content-size: 18px;
 	.homepage-post-content {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
 		height: 100%;
 		color: inherit;
 		text-decoration: none;
 		padding: 20px;
-		padding-bottom: calc(55px + 20px);
+		padding-bottom: calc(40px + 20px); // height of footer buttons + overall padding
 
 		.post-title {
 			display: flex;
-			gap: 5px;
+			align-items: center;
+			gap: 10px;
 
+			// treet user PFP
 			img {
-				width: 50px;
-				height: 50px;
+				width: $treet-user-pfp-width;
+				height: $treet-user-pfp-width;
 				border-radius: 50px;
 			}
 			// treet user
@@ -169,7 +175,7 @@ $tweet-content-size: 18px;
 			// treet timestamp
 			p {
 				font-size: $tweet-timestamp-size;
-				padding-top: 8px;
+				padding-top: 5.5px;
 				font-weight: 300;
 				color: rgb(145, 145, 145);
 
@@ -178,17 +184,24 @@ $tweet-content-size: 18px;
 				}
 			}
 		}
+		.post-content {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			padding-left: $post-content-left-padding;
 
-		// post image
-		> img {
-			width: 100%;
-			height: auto;
-		}
-		// post content
-		> p {
-			font-weight: 300;
-			font-size: $tweet-content-size;
-			line-height: 30px;
+			// post image
+			img {
+				border-radius: 20px;
+				width: 100%;
+				object-fit: cover;
+			}
+			// post content
+			p {
+				font-weight: 300;
+				font-size: $tweet-content-size;
+				line-height: 30px;
+			}
 		}
 	}
 }
@@ -198,13 +211,14 @@ $tweet-content-size: 18px;
 	display: flex;
 	gap: 10px;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	margin-top: auto;
 	flex-wrap: wrap;
 	position: absolute;
 	bottom: 5px;
 	width: 100%;
 	padding: 0px 15px;
+	padding-left: calc($post-content-left-padding + 10px);
 	box-sizing: border-box;
 
 	// makes container non-clickable -> makes clicking on post go to the post's page
