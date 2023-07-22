@@ -131,14 +131,16 @@ $treet-user-pfp-width: 60px;
 
 /* /////////////////////////// */
 
-.homepage-posts {
+.homepage-posts,
+.post-comments {
 	width: 700px;
 	box-sizing: border-box;
 	border: 1px solid lighten(colors.$content-background-brown, 10);
 	background-color: colors.$content-background-brown;
 }
 
-.homepage-post {
+.homepage-post,
+.post-comment {
 	display: flex;
 	flex-direction: column;
 	border: 1px solid lighten(colors.$content-background-brown, 10);
@@ -147,7 +149,8 @@ $treet-user-pfp-width: 60px;
 	height: fit-content;
 	position: relative;
 
-	.homepage-post-content {
+	.homepage-post-content,
+	.post-comment-content {
 		display: flex;
 		flex-direction: column;
 		height: 100%;
@@ -156,7 +159,8 @@ $treet-user-pfp-width: 60px;
 		padding: 20px;
 		padding-bottom: calc(40px + 20px); // height of footer buttons + overall padding
 
-		.post-title {
+		.post-title,
+		.post-comment-title {
 			display: flex;
 			align-items: center;
 			gap: 10px;
@@ -184,7 +188,8 @@ $treet-user-pfp-width: 60px;
 				}
 			}
 		}
-		.post-content {
+		.post-content,
+		.comment-content {
 			display: flex;
 			flex-direction: column;
 			gap: 15px;
@@ -206,8 +211,7 @@ $treet-user-pfp-width: 60px;
 	}
 }
 
-.post-footer,
-.post-comment-footer {
+.post-footer {
 	display: flex;
 	gap: 10px;
 	align-items: center;

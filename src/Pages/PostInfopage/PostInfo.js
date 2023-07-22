@@ -21,6 +21,7 @@ function Post() {
 
 	useEffect(() => {
 		getPostData();
+
 		if (!viewed) {
 			const reqOptions = {
 				method: 'POST',
@@ -70,32 +71,36 @@ function Post() {
 							{postComments.map((comment) => {
 								if (comment) {
 									return (
-										<a className="post-comment" href={comment._id}>
-											<div className="post-comment-title">
-												<img
-													src={
-														profilePictures[comment.author]
-															? profilePictures[comment.author]
-															: getPFP(comment.author)
-													}
-													alt=""
-												/>
-												<h4>{comment.author}</h4>
-												{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
-											</div>
-											<div className="post-comment-content">
-												<p>{comment.content}</p>
-												{comment.image ? <img src={comment.image} alt="" /> : ''}
-											</div>
-											<div className="post-comment-footer">
-												<div className="post-footer">
-													<CommentPost post={comment} />
-													<LikePost post={comment} getPosts={getPostData} />
-													<ViewPost post={comment} />
-													<SharePost link={comment._id} />
+										<div className="post-comment">
+											<a className="post-comment-content" href={comment._id}>
+												<div className="post-comment-title">
+													<img
+														src={
+															profilePictures[comment.author]
+																? profilePictures[comment.author]
+																: getPFP(comment.author)
+														}
+														alt=""
+													/>
+													<h4>{comment.author}</h4>
+													{comment.updated ? (
+														<p>updated {comment.timestamp}</p>
+													) : (
+														<p>on {comment.timestamp}</p>
+													)}
 												</div>
+												<div className="comment-content">
+													<p>{comment.content}</p>
+													{comment.image ? <img src={comment.image} alt="" /> : ''}
+												</div>
+											</a>
+											<div className="post-footer">
+												<CommentPost post={comment} />
+												<LikePost post={comment} getPosts={getPostData} />
+												<ViewPost post={comment} />
+												<SharePost link={comment._id} />
 											</div>
-										</a>
+										</div>
 									);
 								}
 							})}
