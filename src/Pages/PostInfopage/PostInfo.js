@@ -11,8 +11,8 @@ import './post.css';
 
 function Post() {
 	const { postId } = useParams();
-	const { post, loading, getPostData } = PostInfoLogic(postId);
-	const { AddComment, DeleteComment, UpdateComment } = CommentFunctions();
+	const { post, postComments, loading, getPostData } = PostInfoLogic(postId);
+	const { AddComment } = CommentFunctions();
 	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 	const { getPFP, profilePictures } = HomepageLogic();
 
@@ -67,33 +67,37 @@ function Post() {
 
 						<div className="post-comments">
 							<AddComment postId={postId} getComments={getPostData} />
-							{post.comments.map((comment) => {
-								return (
-									<div className="post-comment">
-										<div className="post-comment-title">
-											<img
-												src={
-													profilePictures[comment.author]
-														? profilePictures[comment.author]
-														: getPFP(comment.author)
-												}
-												alt=""
-											/>
-											<h4>{comment.author}</h4>
-											{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
-										</div>
-										<div className="post-comment-content">
-											<p>{comment.content}</p>
-											{comment.image ? <img src={comment.image} alt="" /> : ''}
-										</div>
-										<div className="post-comment-footer">
-											<DeleteComment postId={postId} getComments={getPostData} comment={comment} />
-											<UpdateComment comment={comment} postId={postId} />
-											<DeleteComment postId={postId} getComments={getPostData} comment={comment} />
-											<UpdateComment comment={comment} postId={postId} />
-										</div>
-									</div>
-								);
+							{postComments.map((comment) => {
+								if (comment) {
+									return (
+										<a className="post-comment" href={comment._id}>
+											<div className="post-comment-title">
+												<img
+													src={
+														profilePictures[comment.author]
+															? profilePictures[comment.author]
+															: getPFP(comment.author)
+													}
+													alt=""
+												/>
+												<h4>{comment.author}</h4>
+												{comment.updated ? <p>updated {comment.timestamp}</p> : <p>on {comment.timestamp}</p>}
+											</div>
+											<div className="post-comment-content">
+												<p>{comment.content}</p>
+												{comment.image ? <img src={comment.image} alt="" /> : ''}
+											</div>
+											<div className="post-comment-footer">
+												<div className="post-footer">
+													<CommentPost post={comment} />
+													<LikePost post={comment} getPosts={getPostData} />
+													<ViewPost post={comment} />
+													<SharePost link={comment._id} />
+												</div>
+											</div>
+										</a>
+									);
+								}
 							})}
 						</div>
 					</div>

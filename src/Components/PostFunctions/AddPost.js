@@ -28,7 +28,9 @@ function PostForm({ getPosts }) {
 						token: localStorage.getItem('token'),
 					},
 					body: JSON.stringify({ content: content, timestamp: timestamp, image: image }),
-				}).then(() => getPosts());
+				}).then((data) => {
+					getPosts();
+				});
 				setContent('');
 			};
 		} else {

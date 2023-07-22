@@ -11,7 +11,6 @@ function PostLikes({ post, getPosts }) {
 			},
 		}).then(() => {
 			getPosts();
-			console.log('ran2');
 		});
 	}
 
