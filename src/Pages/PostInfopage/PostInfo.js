@@ -11,7 +11,7 @@ import './post.css';
 
 function Post() {
 	const { postId } = useParams();
-	const { post, postComments, loading, getPostData } = PostInfoLogic(postId);
+	const { post, postComments, loading, getPostData, replyChain, setLoading } = PostInfoLogic(postId);
 	const { AddComment } = CommentFunctions();
 	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 	const { getPFP, profilePictures } = HomepageLogic();
@@ -21,7 +21,6 @@ function Post() {
 
 	useEffect(() => {
 		getPostData();
-
 		if (!viewed) {
 			const reqOptions = {
 				method: 'POST',
@@ -38,6 +37,18 @@ function Post() {
 		}
 	}, [viewed]);
 
+	useEffect(() => {
+		if (postComments && replyChain && post) {
+			setLoading(false);
+		}
+	});
+
+	useEffect(() => {
+		if (document.getElementsByClassName('treet')[0]) {
+			document.getElementsByClassName('treet')[0].scrollIntoView();
+		}
+	}, [loading]);
+
 	return (
 		<div className="post-info-page">
 			<div className="post-info-content">
@@ -45,6 +56,47 @@ function Post() {
 					<div>Loading...</div>
 				) : (
 					<div>
+						<div className="reply-chain">
+							{replyChain
+								? replyChain.map((comment) => {
+										if (comment) {
+											return (
+												<div className="reply-comment">
+													<a className="reply-comment-content" href={comment._id}>
+														<div className="reply-comment-title">
+															<img
+																src={
+																	profilePictures[comment.author]
+																		? profilePictures[comment.author]
+																		: getPFP(comment.author)
+																}
+																alt=""
+															/>
+															<h4>{comment.author}</h4>
+															{comment.updated ? (
+																<p>updated {comment.timestamp}</p>
+															) : (
+																<p>on {comment.timestamp}</p>
+															)}
+														</div>
+														<div className="reply-content">
+															<p>{comment.content}</p>
+															{comment.image ? <img src={comment.image} alt="" /> : ''}
+														</div>
+													</a>
+													<div className="post-footer">
+														<CommentPost post={comment} />
+														<LikePost post={comment} getPosts={getPostData} />
+														<ViewPost post={comment} />
+														<SharePost link={comment._id} />
+													</div>
+												</div>
+											);
+										}
+								  })
+								: ''}
+						</div>
+
 						<div className="treet">
 							<div className="treet-title">
 								<img
@@ -68,42 +120,44 @@ function Post() {
 
 						<div className="post-comments">
 							<AddComment postId={postId} getComments={getPostData} />
-							{postComments.map((comment) => {
-								if (comment) {
-									return (
-										<div className="post-comment">
-											<a className="post-comment-content" href={comment._id}>
-												<div className="post-comment-title">
-													<img
-														src={
-															profilePictures[comment.author]
-																? profilePictures[comment.author]
-																: getPFP(comment.author)
-														}
-														alt=""
-													/>
-													<h4>{comment.author}</h4>
-													{comment.updated ? (
-														<p>updated {comment.timestamp}</p>
-													) : (
-														<p>on {comment.timestamp}</p>
-													)}
+							{postComments
+								? postComments.map((comment) => {
+										if (comment) {
+											return (
+												<div className="post-comment">
+													<a className="post-comment-content" href={comment._id}>
+														<div className="post-comment-title">
+															<img
+																src={
+																	profilePictures[comment.author]
+																		? profilePictures[comment.author]
+																		: getPFP(comment.author)
+																}
+																alt=""
+															/>
+															<h4>{comment.author}</h4>
+															{comment.updated ? (
+																<p>updated {comment.timestamp}</p>
+															) : (
+																<p>on {comment.timestamp}</p>
+															)}
+														</div>
+														<div className="comment-content">
+															<p>{comment.content}</p>
+															{comment.image ? <img src={comment.image} alt="" /> : ''}
+														</div>
+													</a>
+													<div className="post-footer">
+														<CommentPost post={comment} />
+														<LikePost post={comment} getPosts={getPostData} />
+														<ViewPost post={comment} />
+														<SharePost link={comment._id} />
+													</div>
 												</div>
-												<div className="comment-content">
-													<p>{comment.content}</p>
-													{comment.image ? <img src={comment.image} alt="" /> : ''}
-												</div>
-											</a>
-											<div className="post-footer">
-												<CommentPost post={comment} />
-												<LikePost post={comment} getPosts={getPostData} />
-												<ViewPost post={comment} />
-												<SharePost link={comment._id} />
-											</div>
-										</div>
-									);
-								}
-							})}
+											);
+										}
+								  })
+								: ''}
 						</div>
 					</div>
 				)}

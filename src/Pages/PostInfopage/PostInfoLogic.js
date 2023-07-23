@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 function PostInfoLogic(postId) {
 	const [post, setPost] = useState(null);
-	const [postComments, setPostComments] = useState([]);
+	const [postComments, setPostComments] = useState(undefined);
+	const [replyChain, setReplyChain] = useState(undefined);
 	const [loading, setLoading] = useState(true);
 
 	function getPostData() {
@@ -21,35 +22,46 @@ function PostInfoLogic(postId) {
 				});
 				setPost(data);
 				fetchAllComment(data.comments);
-				setLoading(false);
+				if (data.replyChain) {
+					fetchReplyChain(data.replyChain);
+				} else {
+					fetchReplyChain([]);
+				}
 			});
 		});
 	}
 
-	async function fetchComment(commentId) {
-		// returns the overall result
-		return fetch('https://treeter-api.vercel.app/posts/' + commentId, {
+	function fetchAllComment(postCommentIds) {
+		fetch('https://treeter-api.vercel.app/posts/array', {
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),
 			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				return data;
-			});
+			body: JSON.stringify({ array: postCommentIds }),
+		}).then((res) =>
+			res.json().then((data) => {
+				setPostComments(data);
+			})
+		);
 	}
 
-	async function fetchAllComment(postCommentIds) {
-		let array = [];
-		for (const commentId of postCommentIds) {
-			const data = await fetchComment(commentId);
-			array.push(data);
-		}
-		setPostComments(array.reverse());
+	function fetchReplyChain(replyChainIds) {
+		fetch('https://treeter-api.vercel.app/posts/array', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				token: localStorage.getItem('token'),
+			},
+			body: JSON.stringify({ array: replyChainIds }),
+		}).then((res) =>
+			res.json().then((data) => {
+				setReplyChain(data);
+			})
+		);
 	}
 
-	return { post, postComments, loading, getPostData };
+	return { post, postComments, loading, getPostData, replyChain, setLoading };
 }
 
 export default PostInfoLogic;
