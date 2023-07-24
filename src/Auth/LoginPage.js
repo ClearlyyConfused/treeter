@@ -31,12 +31,7 @@ function LoginPage({ setCurrentPage }) {
 				<label htmlFor="username">Username:</label>
 				<input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
 				<label htmlFor="password">Password:</label>
-				<input
-					type="password"
-					name="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
+				<input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 				<button type="submit">Submit</button>
 			</form>
 			<button onClick={() => setCurrentPage('StartPage')}>Back</button>

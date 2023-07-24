@@ -1,5 +1,14 @@
 @use '../../Variables/colors';
 
+$mobile-width: 600px;
+
+$tweet-user-size: 24px;
+$tweet-timestamp-size: 16px;
+$tweet-content-size: 18px;
+
+$post-content-left-padding: 70px;
+$treet-user-pfp-width: 60px;
+
 .post-info-page {
 	min-height: 100vh;
 	height: fit-content;
@@ -25,18 +34,70 @@
 	border: 1px solid lighten(colors.$content-background-brown, 10);
 
 	background-color: colors.$content-background-brown;
-	box-shadow: 3px 2px 5px 1px darken(colors.$content-background-brown, 10);
 }
 
 /* /////////////////////////// */
 
-.treet-header {
-	padding: 15px;
-	padding-bottom: 0px;
-	p {
-		font-size: 22px;
-		overflow: hidden;
-		overflow-wrap: break-word;
+.treet {
+	display: flex;
+	flex-direction: column;
+	padding: 15px 25px;
+	border-bottom: 1px solid lighten(colors.$content-background-brown, 10);
+
+	.treet-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		img {
+			width: calc($treet-user-pfp-width + 10px);
+			height: calc($treet-user-pfp-width + 10px);
+			border-radius: 50px;
+		}
+
+		// main treet user
+		h3 {
+			font-size: calc($tweet-user-size + 5px);
+			font-weight: 800;
+		}
+		// main treet timestamp
+		p {
+			font-size: calc($tweet-timestamp-size + 1px);
+			padding-top: 10px;
+			font-weight: 300;
+			color: rgb(145, 145, 145);
+
+			@media (max-width: $mobile-width) {
+				padding-top: 0px;
+			}
+		}
+	}
+
+	.treet-content {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		padding-left: calc($post-content-left-padding + 10px);
+
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 20px;
+		}
+		// main treet content
+		p {
+			font-weight: 300;
+			font-size: calc($tweet-content-size + 2px);
+			line-height: 32px;
+		}
+	}
+
+	.treet-footer {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 20px;
+		width: calc(100% - $post-content-left-padding - 10px);
+		padding-left: calc($post-content-left-padding + 10px);
 	}
 }
 
@@ -44,18 +105,22 @@
 .post-comment-title {
 	display: flex;
 	gap: 5px;
-	font-size: 16px;
-	font-weight: 600;
-	color: rgb(145, 145, 145);
 
-	h3 {
-		font-size: 22px;
-		color: white;
+	p {
+		color: rgb(145, 145, 145);
 	}
 }
 
 .treet-footer {
 	display: flex;
+	button {
+		position: relative;
+		.link-copied {
+			font-size: 13px;
+			left: -20px;
+			top: -20px;
+		}
+	}
 	p {
 		font-size: 20px;
 	}
@@ -63,35 +128,51 @@
 
 /* /////////////////////////// */
 
-.post-comment {
-	display: flex;
-	flex-direction: column;
-
-	padding: 15px;
-	padding-bottom: 10px;
-
-	border: 1px solid lighten(colors.$content-background-brown, 10);
-	border-left: none;
-	border-right: none;
-
-	min-height: 135px;
-	height: fit-content;
-
-	h4 {
-		color: white;
+.treet {
+	.post-form {
+		padding: 0px;
+		padding-top: 20px;
+		background-color: lighten(colors.$content-background-brown, 2.5%);
 	}
-	> p {
-		overflow: hidden;
-		overflow-wrap: break-word;
+}
+
+.no-treet {
+	width: fit-content;
+	padding: 25px;
+	margin: auto;
+}
+
+.deleted-treet {
+	padding: 25px;
+}
+
+.post-form {
+	form {
+		textarea {
+			max-width: none;
+			min-width: calc(100% - 110px);
+			min-height: 80px;
+			height: fit-content;
+			font-size: 16px;
+			box-sizing: border-box;
+			&::placeholder {
+				color: rgb(220, 220, 220);
+			}
+		}
+
+		button {
+			height: fit-content;
+		}
 	}
 }
 
 /* /////////////////////////// */
 
-@media (max-width: 700px) {
+@media (max-width: $mobile-width) {
 	.post-info-page {
 		flex-direction: column-reverse;
 		justify-content: flex-end;
+		padding: 0px;
 	}
 	.post-info-content {
 		min-height: calc(100vh - 80px);

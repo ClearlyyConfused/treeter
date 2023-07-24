@@ -13,27 +13,52 @@ function PostForm({ getPosts }) {
 			hour: 'numeric',
 			minute: 'numeric',
 		});
-		fetch('https://treeter-api.vercel.app/posts', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				token: localStorage.getItem('token'),
-			},
-			body: JSON.stringify({ content: content, timestamp: timestamp }),
-		}).then(() => getPosts());
-		setContent('');
+
+		if (e.target.elements.postImage.files[0]) {
+			let reader = new FileReader();
+			reader.readAsDataURL(e.target.elements.postImage.files[0]);
+
+			reader.onloadend = () => {
+				const image = reader.result;
+
+				fetch('https://treeter-api.vercel.app/posts', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						token: localStorage.getItem('token'),
+					},
+					body: JSON.stringify({ content: content, timestamp: timestamp, image: image }),
+				}).then((data) => {
+					getPosts();
+				});
+				setContent('');
+			};
+		} else {
+			fetch('https://treeter-api.vercel.app/posts', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					token: localStorage.getItem('token'),
+				},
+				body: JSON.stringify({ content: content, timestamp: timestamp }),
+			}).then(() => getPosts());
+			setContent('');
+		}
 	}
 
 	return (
 		<div className="post-form">
 			<form onSubmit={handleSubmit}>
-				<input
+				<textarea
 					type="text"
 					name="content"
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
 					maxLength="250"
+					placeholder="Send out a Treet!"
 				/>
+				<label htmlFor="postImage">Upload Image</label>
+				<input type="file" id="postImage" name="postImage" accept="image/png, image/jpeg"></input>
 				<button type="submit">Treet</button>
 			</form>
 		</div>

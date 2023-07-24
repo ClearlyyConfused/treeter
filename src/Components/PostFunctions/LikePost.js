@@ -9,7 +9,9 @@ function PostLikes({ post, getPosts }) {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),
 			},
-		}).then(() => getPosts());
+		}).then(() => {
+			getPosts();
+		});
 	}
 
 	const likeIconSrc = post.likes.includes(localStorage.getItem('username')) ? likeIconFilled : likeIconEmpty;

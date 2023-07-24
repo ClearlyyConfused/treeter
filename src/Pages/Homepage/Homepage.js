@@ -5,8 +5,8 @@ import HomepageLogic from './HomepageLogic';
 import './homepage.css';
 
 function HomePage() {
-	const { posts, loading, getPosts } = HomepageLogic();
-	const { AddPost, LikePost, CommentPost, DeletePost, UpdatePost } = PostFunctions();
+	const { posts, loading, getPosts, uploadPFP, getPFP, profilePictures } = HomepageLogic();
+	const { AddPost, LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
 
 	useEffect(() => {
 		getPosts();
@@ -15,7 +15,29 @@ function HomePage() {
 	return (
 		<div className="homepage">
 			<div className="homepage-posts">
-				<h1>All Posts</h1>
+				<div className="homepage-header">
+					<h1>Home</h1>
+					<div>
+						<img
+							src={
+								profilePictures[localStorage.username]
+									? profilePictures[localStorage.username]
+									: getPFP(localStorage.username)
+							}
+							alt=""
+						/>
+						<form onChange={uploadPFP}>
+							<label htmlFor="image">Change PFP</label>
+							<input
+								style={{ display: 'none' }}
+								type="file"
+								id="image"
+								name="image"
+								accept="image/png, image/jpeg"
+							></input>
+						</form>
+					</div>
+				</div>
 				<AddPost getPosts={getPosts} />
 				{loading ? (
 					<div>Loading Posts...</div>
@@ -24,22 +46,27 @@ function HomePage() {
 						{posts.map((post) => {
 							return (
 								<div className="homepage-post">
-									<div className="post-title">
-										<h4>{post.author}</h4>
-										{post.updated ? (
-											<p>updated {post.timestamp}</p>
-										) : (
-											<p>on {post.timestamp}</p>
-										)}
-									</div>
-
-									<p>{post.content}</p>
-
+									<a className="homepage-post-content" href={post._id}>
+										<div className="post-title">
+											<img
+												src={
+													profilePictures[post.author] ? profilePictures[post.author] : getPFP(post.author)
+												}
+												alt=""
+											/>
+											<h4>{post.author}</h4>
+											{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
+										</div>
+										<div className="post-content">
+											<p>{post.content}</p>
+											{post.image ? <img src={post.image} alt="" /> : ''}
+										</div>
+									</a>
 									<div className="post-footer">
 										<CommentPost post={post} />
 										<LikePost post={post} getPosts={getPosts} />
-										<DeletePost postId={post._id} getPosts={getPosts} />
-										<UpdatePost postId={post._id} />
+										<ViewPost post={post} />
+										<SharePost link={post._id} />
 									</div>
 								</div>
 							);
