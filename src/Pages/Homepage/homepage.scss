@@ -244,6 +244,7 @@ $treet-user-pfp-width: 60px;
 	padding: 0px 15px;
 	padding-left: calc($post-content-left-padding + 10px);
 	box-sizing: border-box;
+	z-index: 1;
 
 	// makes container non-clickable -> makes clicking on post go to the post's page
 	pointer-events: none;

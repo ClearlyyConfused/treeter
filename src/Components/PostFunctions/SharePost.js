@@ -18,7 +18,7 @@ function SharePost({ link }) {
 	}, [displayMessage]);
 
 	function copyLink() {
-		navigator.clipboard.writeText('localhost:3000/' + link);
+		navigator.clipboard.writeText('https://treeter.vercel.app/' + link);
 	}
 
 	return (
