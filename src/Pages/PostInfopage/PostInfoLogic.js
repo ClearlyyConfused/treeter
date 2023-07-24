@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function PostInfoLogic(postId) {
-	const [post, setPost] = useState(null);
+	const [post, setPost] = useState(undefined);
 	const [postComments, setPostComments] = useState(undefined);
 	const [replyChain, setReplyChain] = useState(undefined);
 	const [loading, setLoading] = useState(true);
@@ -14,6 +14,9 @@ function PostInfoLogic(postId) {
 			},
 		}).then((response) => {
 			response.json().then((data) => {
+				if (!data) {
+					setPost('Post Deleted');
+				}
 				data.comments.sort((a, b) => {
 					if (new Date(b.timestamp) - new Date(a.timestamp) === 0) {
 						return -1;
@@ -41,7 +44,7 @@ function PostInfoLogic(postId) {
 			body: JSON.stringify({ array: postCommentIds }),
 		}).then((res) =>
 			res.json().then((data) => {
-				setPostComments(data);
+				setPostComments(data.reverse());
 			})
 		);
 	}

@@ -8,11 +8,19 @@ function PostDelete({ postId, getPosts }) {
 				'Content-Type': 'application/json',
 				token: localStorage.getItem('token'),
 			},
-		}).then(() => getPosts());
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					window.location.reload();
+				} else {
+					alert("Cannot delete other's posts");
+				}
+			});
 	}
 
 	return (
-		<button className="footer-button" onClick={handleClick}>
+		<button className="footer-button delete-button" onClick={handleClick}>
 			<img src={deleteIcon} alt="Delete" />
 		</button>
 	);

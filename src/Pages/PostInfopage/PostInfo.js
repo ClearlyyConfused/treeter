@@ -13,12 +13,11 @@ function Post() {
 	const { postId } = useParams();
 	const { post, postComments, loading, getPostData, replyChain, setLoading } = PostInfoLogic(postId);
 	const { AddComment } = CommentFunctions();
-	const { LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
+	const { LikePost, CommentPost, ViewPost, SharePost, DeletePost } = PostFunctions();
 	const { getPFP, profilePictures } = HomepageLogic();
 
 	const [viewed, setViewed] = useState(false);
 	// false -> API fetch to count current view -> reload with updated views -> true
-
 	useEffect(() => {
 		getPostData();
 		if (!viewed) {
@@ -37,18 +36,30 @@ function Post() {
 		}
 	}, [viewed]);
 
+	// if api fetches finished for postComments, replyChain, post, set loading to false
 	useEffect(() => {
 		if (postComments && replyChain && post) {
 			setLoading(false);
 		}
 	});
 
+	// loading = false -> treet loaded -> loading = true -> scroll treet into view
 	useEffect(() => {
 		if (document.getElementsByClassName('treet')[0]) {
 			document.getElementsByClassName('treet')[0].scrollIntoView();
 		}
 	}, [loading]);
 
+	if (post === 'Post Deleted') {
+		return (
+			<div className="post-info-page">
+				<div className="post-info-content">
+					<p className="no-treet">Unable to find Treet</p>
+				</div>
+				<PageSidebar />
+			</div>
+		);
+	}
 	return (
 		<div className="post-info-page">
 			<div className="post-info-content">
@@ -92,12 +103,19 @@ function Post() {
 													</div>
 												</div>
 											);
+										} else if (comment === null) {
+											return (
+												<div className="reply-comment">
+													<div className="deleted-treet">Treet Deleted</div>
+												</div>
+											);
 										}
 								  })
 								: ''}
 						</div>
 
 						<div className="treet">
+							<DeletePost postId={post._id} getPosts={getPostData} />
 							<div className="treet-title">
 								<img
 									src={profilePictures[post.author] ? profilePictures[post.author] : getPFP(post.author)}
@@ -116,10 +134,10 @@ function Post() {
 								<ViewPost post={post} />
 								<SharePost link={post._id} />
 							</div>
+							<AddComment postId={postId} getComments={getPostData} />
 						</div>
 
 						<div className="post-comments">
-							<AddComment postId={postId} getComments={getPostData} />
 							{postComments
 								? postComments.map((comment) => {
 										if (comment) {
