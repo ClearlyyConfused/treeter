@@ -1,6 +1,6 @@
 @use '../../Variables/colors.scss';
 
-$mobile-width: 600px;
+$mobile-width: 800px;
 
 $tweet-user-size: 24px;
 $tweet-timestamp-size: 16px;
@@ -75,6 +75,10 @@ $treet-user-pfp-width: 60px;
 		display: flex;
 		gap: 10px;
 		position: relative;
+
+		@media (max-width: $mobile-width) {
+			flex-direction: column;
+		}
 	}
 
 	textarea {
@@ -90,6 +94,10 @@ $treet-user-pfp-width: 60px;
 		font-size: 16px;
 		resize: none;
 
+		@media (max-width: $mobile-width) {
+			min-width: 100% !important;
+		}
+
 		&::placeholder {
 			color: rgb(220, 220, 220);
 		}
@@ -101,11 +109,16 @@ $treet-user-pfp-width: 60px;
 	// add image
 	label {
 		position: absolute;
-		right: calc(10px + 100px + 10px); // size of gap + size of button + extra
+		right: calc(10px + 100px + 10px); // size of gap + width of button + extra
 		bottom: 10px;
 		&:hover {
 			cursor: pointer;
 			text-decoration: underline;
+		}
+
+		@media (max-width: $mobile-width) {
+			right: calc(10px + 0px + 10px);
+			bottom: calc(10px + 38px + 10px); // size fo gap + height of button + extra
 		}
 	}
 	input {
@@ -115,6 +128,7 @@ $treet-user-pfp-width: 60px;
 	// submit post
 	button {
 		min-width: 100px;
+		width: fit-content;
 		border: none;
 		border-radius: 20px;
 		padding: 10px;
@@ -131,12 +145,21 @@ $treet-user-pfp-width: 60px;
 
 /* /////////////////////////// */
 
+.homepage-posts {
+	padding-bottom: 225px;
+}
+
 .homepage-posts,
 .post-comments {
-	width: 700px;
+	max-width: 700px;
+	width: 100%;
 	box-sizing: border-box;
 	border: 1px solid lighten(colors.$content-background-brown, 10);
 	background-color: colors.$content-background-brown;
+
+	@media (max-width: $mobile-width) {
+		max-width: none;
+	}
 }
 
 .homepage-post,
@@ -168,6 +191,15 @@ $treet-user-pfp-width: 60px;
 			align-items: center;
 			gap: 10px;
 
+			@media (max-width: $mobile-width) {
+				flex-direction: row;
+				padding-bottom: 15px;
+
+				p {
+					margin-bottom: -6px;
+				}
+			}
+
 			// treet user PFP
 			img {
 				width: $treet-user-pfp-width;
@@ -198,6 +230,10 @@ $treet-user-pfp-width: 60px;
 			flex-direction: column;
 			gap: 15px;
 			padding-left: $post-content-left-padding;
+
+			@media (max-width: $mobile-width) {
+				padding-left: 0px;
+			}
 
 			// post image
 			img {
@@ -246,6 +282,11 @@ $treet-user-pfp-width: 60px;
 	box-sizing: border-box;
 	z-index: 1;
 
+	@media (max-width: $mobile-width) {
+		padding-right: 20px;
+		padding-left: 10px;
+	}
+
 	// makes container non-clickable -> makes clicking on post go to the post's page
 	pointer-events: none;
 	> button {
@@ -271,7 +312,7 @@ $treet-user-pfp-width: 60px;
 .link-copied {
 	position: absolute;
 	left: -15px;
-	top: -15px;
+	top: -10px;
 	min-width: 75px;
 }
 

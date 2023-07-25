@@ -46,11 +46,15 @@ function Post() {
 	// loading = false -> treet loaded -> loading = true -> scroll treet into view
 	useEffect(() => {
 		if (document.getElementsByClassName('treet')[0]) {
-			document.getElementsByClassName('treet')[0].scrollIntoView();
+			let dims = document.getElementsByClassName('treet')[0].getBoundingClientRect();
+			// accounts for sidebar header in mobile view
+			const offset = window.innerWidth < 422 ? 120 : window.innerWidth < 801 ? 80 : 0;
+			window.scrollTo(window.scrollX, dims.top - offset);
 		}
 	}, [loading]);
 
 	if (post === 'Post Deleted') {
+		window.scrollTo(0, 0);
 		return (
 			<div className="post-info-page">
 				<div className="post-info-content">
