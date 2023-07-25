@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import PageSidebar from '../../Components/PageSidebar';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
 import HomepageLogic from './HomepageLogic';
+import x from '../../Images/share.svg';
 import './homepage.css';
 
 function HomePage() {
@@ -26,6 +27,12 @@ function HomePage() {
 							}
 							alt=""
 						/>
+
+						{/* for some reason, fixes pfp not showing up on mobile */}
+						<p style={{ maxHeight: '0px', maxWidth: '0px', overflow: 'hidden' }}>
+							{profilePictures[localStorage.username]}
+						</p>
+
 						<form onChange={uploadPFP}>
 							<label htmlFor="image">Change PFP</label>
 							<input
