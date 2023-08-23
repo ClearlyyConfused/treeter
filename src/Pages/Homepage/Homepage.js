@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import PageSidebar from '../../Components/PageSidebar';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
 import HomepageLogic from './HomepageLogic';
-import x from '../../Images/share.svg';
+import LoadingAnimation from '../../Components/LoadingAnimation/LoadingAnimation';
 import './homepage.css';
 
 function HomePage() {
@@ -47,7 +47,7 @@ function HomePage() {
 				</div>
 				<AddPost getPosts={getPosts} />
 				{loading ? (
-					<div>Loading Posts...</div>
+					<LoadingAnimation />
 				) : (
 					<div>
 						{posts.map((post) => {

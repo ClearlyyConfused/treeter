@@ -6,6 +6,7 @@ import PageSidebar from '../../Components/PageSidebar';
 import CommentFunctions from '../../Components/CommentFunctions/CommentFunctions';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
 import HomepageLogic from '../Homepage/HomepageLogic';
+import LoadingAnimation from '../../Components/LoadingAnimation/LoadingAnimation';
 
 import defaultPFP from '../../Images/c027bec07c2dc08b9df60921dfd539bd.jpg';
 
@@ -70,7 +71,7 @@ function Post() {
 		<div className="post-info-page">
 			<div className="post-info-content">
 				{loading ? (
-					<div>Loading...</div>
+					<LoadingAnimation />
 				) : (
 					<div>
 						<div className="reply-chain">
