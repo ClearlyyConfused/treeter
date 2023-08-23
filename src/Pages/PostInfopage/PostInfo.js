@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 import PostInfoLogic from './PostInfoLogic';
 import PageSidebar from '../../Components/PageSidebar';
-import CommentFunctions from '../../Components/CommentFunctions/CommentFunctions';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
 import HomepageLogic from '../Homepage/HomepageLogic';
 import LoadingAnimation from '../../Components/LoadingAnimation/LoadingAnimation';
@@ -15,8 +14,7 @@ import './post.css';
 function Post() {
 	const { postId } = useParams();
 	const { post, postComments, loading, getPostData, replyChain, setLoading } = PostInfoLogic(postId);
-	const { AddComment } = CommentFunctions();
-	const { LikePost, CommentPost, ViewPost, SharePost, DeletePost } = PostFunctions();
+	const { LikePost, AddComment, PostComments, ViewPost, SharePost, DeletePost } = PostFunctions();
 	const { getPFP, profilePictures } = HomepageLogic();
 
 	const [viewed, setViewed] = useState(false);
@@ -103,7 +101,7 @@ function Post() {
 														</div>
 													</a>
 													<div className="post-footer">
-														<CommentPost post={comment} />
+														<PostComments post={comment} />
 														<LikePost post={comment} getPosts={getPostData} />
 														<ViewPost post={comment} />
 														<SharePost link={comment._id} />
@@ -140,7 +138,7 @@ function Post() {
 								<img src={post.image ? post.image : ''} alt="" />
 							</div>
 							<div className="treet-footer">
-								<CommentPost post={post} />
+								<PostComments post={post} />
 								<LikePost post={post} getPosts={getPostData} />
 								<ViewPost post={post} />
 								<SharePost link={post._id} />
@@ -178,7 +176,7 @@ function Post() {
 														</div>
 													</a>
 													<div className="post-footer">
-														<CommentPost post={comment} />
+														<PostComments post={comment} />
 														<LikePost post={comment} getPosts={getPostData} />
 														<ViewPost post={comment} />
 														<SharePost link={comment._id} />

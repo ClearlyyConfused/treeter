@@ -7,7 +7,7 @@ import './homepage.css';
 
 function HomePage() {
 	const { posts, loading, getPosts, uploadPFP, getPFP, profilePictures } = HomepageLogic();
-	const { AddPost, LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
+	const { AddPost, LikePost, PostComments, ViewPost, SharePost } = PostFunctions();
 
 	useEffect(() => {
 		getPosts();
@@ -70,7 +70,7 @@ function HomePage() {
 										</div>
 									</a>
 									<div className="post-footer">
-										<CommentPost post={post} />
+										<PostComments post={post} />
 										<LikePost post={post} getPosts={getPosts} />
 										<ViewPost post={post} />
 										<SharePost link={post._id} />

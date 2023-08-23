@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function CommentForm({ postId, getComments }) {
+function AddComment({ postId, getComments }) {
 	const [content, setContent] = useState('');
 
 	function replyPost(e) {
@@ -61,4 +61,4 @@ function CommentForm({ postId, getComments }) {
 	);
 }
 
-export default CommentForm;
+export default AddComment;
