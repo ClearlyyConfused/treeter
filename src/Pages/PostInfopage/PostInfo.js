@@ -7,6 +7,8 @@ import CommentFunctions from '../../Components/CommentFunctions/CommentFunctions
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
 import HomepageLogic from '../Homepage/HomepageLogic';
 
+import defaultPFP from '../../Images/c027bec07c2dc08b9df60921dfd539bd.jpg';
+
 import './post.css';
 
 function Post() {
@@ -110,7 +112,10 @@ function Post() {
 										} else if (comment === null) {
 											return (
 												<div className="reply-comment">
-													<div className="deleted-treet">Treet Deleted</div>
+													<div className="deleted-treet">
+														<img src={defaultPFP} alt="" srcset="" />
+														<p>[ Treet Deleted ]</p>
+													</div>
 												</div>
 											);
 										}
