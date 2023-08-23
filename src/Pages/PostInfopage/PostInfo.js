@@ -116,6 +116,7 @@ function Post() {
 										}
 								  })
 								: ''}
+							<div className="reply-chain-link"></div>
 						</div>
 
 						<div className="treet">
@@ -139,6 +140,7 @@ function Post() {
 								<SharePost link={post._id} />
 							</div>
 							<AddComment postId={postId} getComments={getPostData} />
+							{replyChain.length !== 0 ? <div className="treet-link"></div> : ''}
 						</div>
 
 						<div className="post-comments">
