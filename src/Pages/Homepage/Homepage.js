@@ -15,7 +15,7 @@ function HomePage() {
 
 	return (
 		<div className="homepage">
-			<div className="homepage-posts">
+			<div className="homepage-content">
 				<div className="homepage-header">
 					<h1>Home</h1>
 					<div>
