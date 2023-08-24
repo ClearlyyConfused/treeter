@@ -49,11 +49,11 @@ function HomePage() {
 				{loading ? (
 					<LoadingAnimation />
 				) : (
-					<div>
+					<div className="homepage-posts">
 						{posts.map((post) => {
 							return (
 								<div className="homepage-post">
-									<a className="homepage-post-content" href={post._id}>
+									<a className="homepage-post-content-container" href={post._id}>
 										<div className="post-title">
 											<img
 												src={
