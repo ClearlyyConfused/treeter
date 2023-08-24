@@ -118,6 +118,27 @@ $treet-user-pfp-width: 60px;
 			padding: 15px 20px;
 			background-color: rgb(77, 50, 56);
 
+			.delete-button {
+				margin-left: auto;
+				border: none;
+				background-color: none;
+				background: none;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				text-decoration: none;
+				color: inherit;
+
+				img {
+					width: 20px;
+					height: 20px;
+					filter: invert(1);
+					&:hover {
+						filter: invert(1);
+					}
+				}
+			}
+
 			.treet-title {
 				display: flex;
 				align-items: center;

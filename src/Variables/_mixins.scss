@@ -98,7 +98,7 @@ $treet-user-pfp-width: 60px;
 	margin-top: auto;
 	flex-wrap: wrap;
 	position: absolute;
-	bottom: -5px;
+	bottom: 0px;
 	width: 100%;
 	padding: 0px 20px;
 	padding-left: calc($post-content-left-padding + 10px);
@@ -118,6 +118,26 @@ $treet-user-pfp-width: 60px;
 	}
 	p {
 		font-size: 16px;
+	}
+
+	.footer-button {
+		border: none;
+		background-color: none;
+		background: none;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		text-decoration: none;
+		color: inherit;
+
+		img {
+			width: 20px;
+			height: 20px;
+			filter: invert(1);
+			&:hover {
+				filter: invert(1);
+			}
+		}
 	}
 
 	// aligns footer in the middle

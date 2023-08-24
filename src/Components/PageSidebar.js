@@ -1,3 +1,5 @@
+import './PageSidebar.css';
+
 function PageSidebar() {
 	function logout() {
 		localStorage.clear();
