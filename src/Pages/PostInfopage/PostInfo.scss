@@ -1,0 +1,175 @@
+@use '../../Variables/colors';
+@use '../../Variables/mixins.scss';
+
+$mobile-width: 800px;
+
+$tweet-user-size: 24px;
+$tweet-timestamp-size: 16px;
+$tweet-content-size: 18px;
+
+$post-content-left-padding: 70px;
+$treet-user-pfp-width: 60px;
+
+.post-info-page {
+	@include mixins.page-css;
+
+	.post-info-content {
+		@include mixins.page-content-css;
+
+		.no-treet {
+			margin: auto;
+			padding: 25px;
+			width: fit-content;
+		}
+
+		// CSS for line that connects PFPs of the reply chain and post
+		.reply-chain,
+		.treet {
+			position: relative;
+
+			.reply-chain-link,
+			.treet-link {
+				position: absolute;
+				top: 0px;
+				// left padding + pfp width / 2 - link width / 2
+				left: calc(20px + $treet-user-pfp-width / 2 - 2px / 2);
+				z-index: 1;
+				background-color: lighten(colors.$content-background-brown, 10);
+				width: 2px;
+				height: calc(100% - 20px);
+			}
+			.reply-chain-link {
+				top: calc(20px + $treet-user-pfp-width);
+			}
+			.treet-link {
+				height: 40px;
+			}
+		}
+
+		.reply-chain {
+			.reply-comment {
+				border: none !important;
+				@include mixins.post-container-css;
+
+				.reply-comment-content {
+					@include mixins.post-content-container-css;
+					.reply-comment-title {
+						@include mixins.post-title-css;
+					}
+					.reply-content {
+						@include mixins.post-content-css;
+					}
+				}
+
+				.post-footer {
+					@include mixins.post-footer-css;
+				}
+
+				.deleted-treet {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					background-color: colors.$content-background-brown;
+					padding: 15px 20px;
+					height: fit-content;
+
+					p {
+						font-size: 18px;
+					}
+					img {
+						z-index: 2;
+						border-radius: 50px;
+						width: calc($treet-user-pfp-width + 0px);
+						height: calc($treet-user-pfp-width + 0px);
+					}
+				}
+			}
+		}
+
+		.treet {
+			display: flex;
+			position: relative;
+			flex-direction: column;
+			background-color: rgb(77, 50, 56);
+			padding: 15px 20px;
+
+			.delete-button {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				margin-left: auto;
+				border: none;
+				background-color: none;
+				background: none;
+				color: inherit;
+				text-decoration: none;
+
+				img {
+					filter: invert(1);
+					width: 20px;
+					height: 20px;
+					&:hover {
+						filter: invert(1);
+					}
+				}
+			}
+
+			.treet-title {
+				@include mixins.post-title-css;
+
+				// main treet username
+				h3 {
+					font-weight: 800;
+					font-size: calc($tweet-user-size + 0px);
+				}
+			}
+
+			.treet-content {
+				@include mixins.post-content-css;
+				gap: 0px;
+
+				img {
+					height: auto;
+				}
+			}
+
+			.treet-footer {
+				@include mixins.post-footer-css;
+				bottom: 105px;
+
+				@media (max-width: $mobile-width) {
+					bottom: calc(105px + 50px);
+				}
+			}
+
+			.post-form {
+				padding: 0px !important;
+				padding-top: 50px !important;
+				@include mixins.post-form-css;
+			}
+		}
+
+		.post-comments {
+			.post-comment {
+				@include mixins.post-container-css;
+
+				.post-comment-content {
+					@include mixins.post-content-container-css;
+
+					.post-comment-title {
+						@include mixins.post-title-css;
+					}
+
+					.comment-content {
+						@include mixins.post-content-css;
+					}
+				}
+
+				.post-footer {
+					bottom: 0 !important;
+					@include mixins.post-footer-css;
+				}
+			}
+		}
+	}
+}
