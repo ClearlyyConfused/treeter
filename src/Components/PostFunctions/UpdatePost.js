@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import editIcon from '../../Images/edit-icon.svg';
-import '../components.css';
 
 function PostUpdate({ postId }) {
 	const [display, setDisplay] = useState(true);

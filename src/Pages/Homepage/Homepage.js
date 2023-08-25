@@ -7,7 +7,7 @@ import './homepage.css';
 
 function HomePage() {
 	const { posts, loading, getPosts, uploadPFP, getPFP, profilePictures } = HomepageLogic();
-	const { AddPost, LikePost, CommentPost, ViewPost, SharePost } = PostFunctions();
+	const { AddPost, LikePost, PostComments, ViewPost, SharePost } = PostFunctions();
 
 	useEffect(() => {
 		getPosts();
@@ -15,7 +15,7 @@ function HomePage() {
 
 	return (
 		<div className="homepage">
-			<div className="homepage-posts">
+			<div className="homepage-content">
 				<div className="homepage-header">
 					<h1>Home</h1>
 					<div>
@@ -49,11 +49,11 @@ function HomePage() {
 				{loading ? (
 					<LoadingAnimation />
 				) : (
-					<div>
+					<div className="homepage-posts">
 						{posts.map((post) => {
 							return (
 								<div className="homepage-post">
-									<a className="homepage-post-content" href={post._id}>
+									<a className="homepage-post-content-container" href={post._id}>
 										<div className="post-title">
 											<img
 												src={
@@ -70,7 +70,7 @@ function HomePage() {
 										</div>
 									</a>
 									<div className="post-footer">
-										<CommentPost post={post} />
+										<PostComments post={post} />
 										<LikePost post={post} getPosts={getPosts} />
 										<ViewPost post={post} />
 										<SharePost link={post._id} />
