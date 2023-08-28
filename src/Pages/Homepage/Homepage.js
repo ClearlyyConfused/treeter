@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PageSidebar from '../../Components/PageSidebar';
 import PostFunctions from '../../Components/PostFunctions/PostFunctions';
 import HomepageLogic from './HomepageLogic';
@@ -6,12 +6,19 @@ import LoadingAnimation from '../../Components/LoadingAnimation/LoadingAnimation
 import './homepage.css';
 
 function HomePage() {
-	const { posts, loading, getPosts, uploadPFP, getPFP, profilePictures } = HomepageLogic();
+	const { posts, loading, getPosts, uploadPFP, getPFP, profilePictures, fetchAllPFP } = HomepageLogic();
 	const { AddPost, LikePost, PostComments, ViewPost, SharePost } = PostFunctions();
+	const [userPFPs, setUserPFPs] = useState([]);
 
 	useEffect(() => {
 		getPosts();
 	}, []);
+
+	useEffect(() => {
+		if (posts !== []) {
+			fetchAllPFP(posts.concat([{ author: localStorage.username }]), setUserPFPs);
+		}
+	}, [posts]);
 
 	return (
 		<div className="homepage">
@@ -19,14 +26,7 @@ function HomePage() {
 				<div className="homepage-header">
 					<h1>Home</h1>
 					<div>
-						<img
-							src={
-								profilePictures[localStorage.username]
-									? profilePictures[localStorage.username]
-									: getPFP(localStorage.username)
-							}
-							alt=""
-						/>
+						<img src={userPFPs[localStorage.username]} alt="" />
 
 						{/* for some reason, fixes pfp not showing up on mobile */}
 						<p style={{ maxHeight: '0px', maxWidth: '0px', overflow: 'hidden' }}>
@@ -55,12 +55,7 @@ function HomePage() {
 								<div className="homepage-post">
 									<a className="homepage-post-content-container" href={post._id}>
 										<div className="post-title">
-											<img
-												src={
-													profilePictures[post.author] ? profilePictures[post.author] : getPFP(post.author)
-												}
-												alt=""
-											/>
+											<img src={userPFPs[post.author]} alt="" />
 											<h4>{post.author}</h4>
 											{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 										</div>

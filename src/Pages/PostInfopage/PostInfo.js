@@ -15,7 +15,15 @@ function Post() {
 	const { postId } = useParams();
 	const { post, postComments, loading, getPostData, replyChain, setLoading } = PostInfoLogic(postId);
 	const { LikePost, AddComment, PostComments, ViewPost, SharePost, DeletePost } = PostFunctions();
-	const { getPFP, profilePictures } = HomepageLogic();
+	const { getPFP, profilePictures, fetchAllPFP } = HomepageLogic();
+	const [userPFPs, setUserPFPs] = useState([]);
+
+	useEffect(() => {
+		if (postComments && replyChain && post) {
+			console.log([post].concat(replyChain).concat(postComments));
+			fetchAllPFP([post].concat(replyChain).concat(postComments), setUserPFPs);
+		}
+	}, [post, postComments, replyChain]);
 
 	const [viewed, setViewed] = useState(false);
 	// false -> API fetch to count current view -> reload with updated views -> true
@@ -81,14 +89,7 @@ function Post() {
 											<div className="reply-comment">
 												<a className="reply-comment-content" href={comment._id}>
 													<div className="reply-comment-title">
-														<img
-															src={
-																profilePictures[comment.author]
-																	? profilePictures[comment.author]
-																	: getPFP(comment.author)
-															}
-															alt=""
-														/>
+														<img src={userPFPs[comment.author]} alt="" />
 														<h4>{comment.author}</h4>
 														{comment.updated ? (
 															<p>updated {comment.timestamp}</p>
@@ -127,10 +128,7 @@ function Post() {
 					<div className="treet">
 						<DeletePost postId={post._id} getPosts={getPostData} />
 						<div className="treet-title">
-							<img
-								src={profilePictures[post.author] ? profilePictures[post.author] : getPFP(post.author)}
-								alt=""
-							/>
+							<img src={userPFPs[post.author]} alt="" />
 							<h3>{post.author}</h3>
 							{post.updated ? <p>updated {post.timestamp}</p> : <p>on {post.timestamp}</p>}
 						</div>
@@ -156,14 +154,7 @@ function Post() {
 											<div className="post-comment">
 												<a className="post-comment-content" href={comment._id}>
 													<div className="post-comment-title">
-														<img
-															src={
-																profilePictures[comment.author]
-																	? profilePictures[comment.author]
-																	: getPFP(comment.author)
-															}
-															alt=""
-														/>
+														<img src={userPFPs[comment.author]} alt="" />
 														<h4>{comment.author}</h4>
 														{comment.updated ? (
 															<p>updated {comment.timestamp}</p>

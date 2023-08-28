@@ -70,6 +70,15 @@ function HomepageLogic() {
 			});
 	}
 
+	async function fetchAllPFP(posts, setUserProfileImages) {
+		let array = [];
+		for (const post of posts) {
+			const data = await fetchPFP(post.author);
+			array.push([post.author, data]);
+		}
+		setUserProfileImages(Object.fromEntries(array));
+	}
+
 	// updates profilePictures dictionary with username-pfp pair
 	async function getPFP(username) {
 		const pfp = await fetchPFP(username);
@@ -81,7 +90,7 @@ function HomepageLogic() {
 		// makes sure img src's re-render with new profilePictures instead of returned promise from calling function
 	}
 
-	return { posts, loading, getPosts, uploadPFP, fetchPFP, getPFP, profilePictures };
+	return { posts, loading, getPosts, uploadPFP, fetchPFP, getPFP, profilePictures, fetchAllPFP };
 }
 
 export default HomepageLogic;
