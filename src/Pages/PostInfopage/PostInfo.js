@@ -20,7 +20,6 @@ function Post() {
 
 	useEffect(() => {
 		if (postComments && replyChain && post) {
-			console.log([post].concat(replyChain).concat(postComments));
 			fetchAllPFP([post].concat(replyChain).concat(postComments), setUserPFPs);
 		}
 	}, [post, postComments, replyChain]);

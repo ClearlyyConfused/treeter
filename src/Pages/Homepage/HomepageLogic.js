@@ -73,8 +73,10 @@ function HomepageLogic() {
 	async function fetchAllPFP(posts, setUserProfileImages) {
 		let array = [];
 		for (const post of posts) {
-			const data = await fetchPFP(post.author);
-			array.push([post.author, data]);
+			if (post !== null) {
+				const data = await fetchPFP(post.author);
+				array.push([post.author, data]);
+			}
 		}
 		setUserProfileImages(Object.fromEntries(array));
 	}
