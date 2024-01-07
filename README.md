@@ -23,7 +23,6 @@ https://treeter.vercel.app/
 
 ## Screenshots 📸
 
-![App Screenshot 1](./README_images/Screenshot%202023-07-26%20201833.png)
-![App Screenshot 2](./README_images/Screenshot%202023-07-26%20202007.png)
-![App Screenshot 3](./README_images/Screenshot%202023-07-26%20202026.png)
-![App Screenshot 4](./README_images/Screenshot%202023-07-26%20202121.png)
+![App Screenshot 1](./README_images/treeter.png)
+![App Screenshot 2](./README_images/treeter2.png)
+![App Screenshot 3](./README_images/treeter3.png)
