@@ -15,7 +15,7 @@ function HomePage() {
 	}, []);
 
 	useEffect(() => {
-		if (posts !== []) {
+		if (posts.length !== 0) {
 			fetchAllPFP(posts.concat([{ author: localStorage.username }]), setUserPFPs);
 		}
 	}, [posts]);

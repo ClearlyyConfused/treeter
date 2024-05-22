@@ -7,6 +7,7 @@ function RegisterPage({ setCurrentPage }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		setError('');
 		fetch('https://treeter-api.vercel.app/register', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -39,11 +40,16 @@ function RegisterPage({ setCurrentPage }) {
 				<label htmlFor="username">Username:</label>
 				<input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
 				<label htmlFor="password">Password:</label>
-				<input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+				<input
+					type="password"
+					name="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+				/>
 				<button type="submit">Submit</button>
 			</form>
 			<button onClick={() => setCurrentPage('StartPage')}>Back</button>
-			<p className="error-message">{error}</p>
+			{error !== '' ? <p className="error-message">{error}</p> : ''}
 		</div>
 	);
 }
