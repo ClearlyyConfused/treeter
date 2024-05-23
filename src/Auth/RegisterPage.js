@@ -38,13 +38,22 @@ function RegisterPage({ setCurrentPage }) {
 			<h1>Register</h1>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="username">Username:</label>
-				<input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+				<input
+					type="text"
+					name="username"
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					required
+					minLength={4}
+				/>
 				<label htmlFor="password">Password:</label>
 				<input
 					type="password"
 					name="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
+					required
+					minLength={4}
 				/>
 				<button type="submit">Submit</button>
 			</form>
