@@ -26,8 +26,10 @@ function AddComment({ postId, getComments }) {
 						token: localStorage.getItem('token'),
 					},
 					body: JSON.stringify({ content: content, timestamp: timestamp, image: image }),
-				}).then(() => getComments());
-				setContent('');
+				}).then(() => {
+					getComments();
+					setContent('');
+				});
 			};
 		} else {
 			fetch('https://treeter-api.vercel.app/posts/' + postId + '/comment', {
@@ -37,8 +39,10 @@ function AddComment({ postId, getComments }) {
 					token: localStorage.getItem('token'),
 				},
 				body: JSON.stringify({ content: content, timestamp: timestamp }),
-			}).then(() => getComments());
-			setContent('');
+			}).then(() => {
+				getComments();
+				setContent('');
+			});
 		}
 	}
 

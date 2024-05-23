@@ -30,8 +30,8 @@ function PostForm({ getPosts }) {
 					body: JSON.stringify({ content: content, timestamp: timestamp, image: image }),
 				}).then((data) => {
 					getPosts();
+					setContent('');
 				});
-				setContent('');
 			};
 		} else {
 			fetch('https://treeter-api.vercel.app/posts', {
@@ -41,8 +41,10 @@ function PostForm({ getPosts }) {
 					token: localStorage.getItem('token'),
 				},
 				body: JSON.stringify({ content: content, timestamp: timestamp }),
-			}).then(() => getPosts());
-			setContent('');
+			}).then(() => {
+				getPosts();
+				setContent('');
+			});
 		}
 	}
 

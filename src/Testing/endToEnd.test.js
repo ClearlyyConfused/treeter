@@ -11,7 +11,7 @@ function randomString(length) {
 	return string;
 }
 
-describe('Test login page of site', () => {
+describe('Test login page of the site', () => {
 	let driver;
 	beforeAll(async () => {
 		driver = await new Builder().forBrowser(Browser.CHROME).build();
@@ -76,7 +76,7 @@ describe('Test login page of site', () => {
 	});
 });
 
-describe('Test register page of site', () => {
+describe('Test register page of the site', () => {
 	let driver;
 	beforeAll(async () => {
 		driver = await new Builder().forBrowser(Browser.CHROME).build();
@@ -188,5 +188,59 @@ describe('Test register page of site', () => {
 		const sidebarUsername = await driver.wait(until.elementLocated(By.css('h2'))).then((e) => e.getText());
 		expect(title).toBe('Home');
 		expect(sidebarUsername).toBe(username);
+	});
+});
+
+describe('Test posting functionality of the site', () => {
+	let driver;
+	beforeAll(async () => {
+		driver = await new Builder().forBrowser(Browser.CHROME).build();
+		await driver.get('http://localhost:3000/');
+		await driver.manage().window().maximize();
+		// login with test account
+		await driver.wait(until.elementLocated(By.xpath('//button[text()="LOGIN"]'))).then(async (e) => {
+			await e.click();
+		});
+		await driver.wait(until.elementLocated(By.name('username'))).then(async (e) => {
+			await e.sendKeys('Test');
+		});
+		await driver.wait(until.elementLocated(By.name('password'))).then(async (e) => {
+			await e.sendKeys('testPassword');
+		});
+		await driver.wait(until.elementLocated(By.xpath('//button[text()="Submit"]'))).then(async (e) => {
+			await e.click();
+		});
+		await driver.wait(until.elementLocated(By.css('h2'))).then((e) => e.getText());
+	});
+	afterAll(async () => {
+		await driver.quit();
+	});
+
+	test('Sending a "Treet" updates the main feed with that "Treet"', async () => {
+		const content = randomString(20);
+		await driver.wait(until.elementLocated(By.name('content'))).then(async (e) => {
+			await e.sendKeys(content);
+			await driver.findElement(By.xpath('//button[text()="Treet"]')).then(async (e) => {
+				await e.click();
+			});
+		});
+		await driver.wait(until.elementTextIs(driver.findElement(By.name('content')), ''));
+		const treet = await driver
+			.wait(until.elementLocated(By.className('post-content')))
+			.then(async (e) => await e.findElement(By.xpath('.//p')).then((e2) => e2.getText()));
+		expect(treet).toBe(content);
+	});
+
+	test('Deleting a "Treet" displays a "Unable to find Treet" message', async () => {
+		await driver.wait(until.elementLocated(By.className('homepage-post'))).then(async (e) => {
+			await e.click();
+		});
+		await driver.wait(until.elementLocated(By.className('delete-button'))).then(async (e) => {
+			await e.click();
+		});
+		const message = await driver
+			.wait(until.elementLocated(By.className('no-treet')))
+			.then((e) => e.getText());
+		expect(message).toBe('Unable to find Treet');
 	});
 });
